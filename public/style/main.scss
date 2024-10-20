@@ -1,0 +1,27 @@
+// Import Bootstrap 4 Library
+@import "../vendor/bootstrap/scss/bootstrap.scss";
+@import url("https://kit.fontawesome.com/a076d05399.css");
+
+@import "global";
+@import "fonts";
+@import "navbar";
+
+@import "pages/home";
+@import "pages/details";
+@import "pages/cart";
+@import "pages/success";
+@import "pages/auth";
+@import "pages/account";
+@import "pages/dashboard";
+@import "pages/orders";
+
+@import "components/breadcrumbs";
+@import "components/categories";
+@import "components/products";
+@import "components/card-account";
+@import "components/card-list";
+@import "components/card-dashboard";
+@import "components/rating";
+@import "components/review";
+
+@import "transitions/slide-fade";

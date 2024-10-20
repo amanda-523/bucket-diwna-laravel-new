@@ -1,0 +1,28 @@
+.rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  .star-rating {
+    font-size: 24px;
+    color: #ffd700;
+  }
+
+  .star-rating i {
+    margin-right: 5px;
+  }
+
+  .star-rating i.checked {
+    color: #ffd700;
+  }
+
+  .star-rating i:not(.checked) {
+    color: #ccc;
+  }
+
+  .rating-text {
+    font-size: 18px;
+    color: #666;
+    margin-left: 10px;
+  }
+}

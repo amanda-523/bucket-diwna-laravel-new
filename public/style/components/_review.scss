@@ -1,0 +1,48 @@
+.review-container {
+  width: 100%;
+
+  .review-rating {
+    margin-bottom: 10px;
+
+    .star {
+      font-size: 30px;
+      color: #5ca4df;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+
+    &.disabled {
+      .star {
+        cursor: not-allowed; // Mengubah cursor saat rating di-disabled
+        pointer-events: none; // Menonaktifkan semua interaksi dengan elemen
+      }
+    }
+  }
+
+  .review-actions {
+    margin-bottom: 10px;
+
+    button {
+      align-items: center;
+      font-size: 14px;
+      background-color: #fff;
+      height: 51px;
+
+      &.add-btn {
+        color: #5ca4df;
+      }
+    }
+
+    .col-12 {
+      img {
+        max-width: 100px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .review-submit {
+    margin-top: 10px;
+  }
+}

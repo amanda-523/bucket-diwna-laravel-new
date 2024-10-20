@@ -1,0 +1,124 @@
+.page-orders {
+  #page-content-wrapper {
+    background: #c8e0f4;
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+
+  .section-content {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    .orders-heading {
+      .orders-title {
+        font-size: 28px;
+        font-weight: 500;
+        color: #131313;
+      }
+
+      .orders-subtitle {
+        font-size: 16px;
+        font-weight: normal;
+        color: #4a4a4a;
+      }
+
+      hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    }
+
+    img {
+      border-radius: 8px;
+    }
+
+    .orders-content {
+      p {
+        margin-top: 0px;
+        font-size: 12px;
+        font-weight: normal;
+        color: #4a4a4a;
+      }
+
+      label {
+        margin-top: 0px;
+      }
+
+      .btn-success {
+        @include button-variant(#f5952f, transparent);
+        color: #fff;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
+      .btn-outline-secondary {
+        color: #f5952f;
+        border: 1px solid #f5952f;
+
+        &:hover {
+          color: #f5952f;
+          border: 1px solid #f5952f;
+          background: #fff;
+        }
+      }
+
+      .table-order {
+        margin-left: -15px;
+        margin-right: -15px;
+
+        .order-image {
+          border-radius: 8px;
+          max-height: 85px;
+        }
+
+        .product-title {
+          font-size: 16px;
+          color: #131313;
+          margin-top: 15px;
+        }
+
+        .product-price {
+          font-size: 16px;
+          color: #f5952f;
+          margin-top: 0px;
+        }
+
+        .btn-info {
+          margin-top: 18px;
+          color: #fff !important;
+
+          @include button-variant(#f5952f, transparent);
+        }
+      }
+
+      .nav-pills {
+        .nav-link {
+          font-size: 16px;
+          font-weight: normal;
+          color: #4a4a4a;
+          border-radius: 0;
+
+          &.active {
+            font-size: 16px;
+            font-weight: 500;
+            color: #131313;
+            border-bottom: 2px solid #131313;
+            background: none;
+          }
+        }
+      }
+
+      .gallery-container {
+        .delete-gallery {
+          display: block;
+          position: absolute;
+          top: -10px;
+          right: 0;
+        }
+      }
+    }
+  }
+}

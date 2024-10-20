@@ -1,0 +1,26 @@
+.page-home {
+  h5 {
+    font-weight: 600;
+    margin-bottom: 15px;
+
+    a {
+      color: #131313;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .store-categories {
+    margin-top: 30px;
+  }
+
+  .store-best-products {
+    margin-top: 10px;
+  }
+
+  .store-products {
+    margin-top: 10px;
+  }
+}
