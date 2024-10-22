@@ -1,0 +1,49 @@
+PS C:\laragon\www\bucket-diwna> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   database/migrations/2014_10_12_000000_create_users_table.php
+        deleted:    public/account-details-orders-done.html
+        modified:   public/style/pages/_account.scss
+        deleted:    public/style/pages/_dashboard.scss
+        modified:   resources/views/auth/register.blade.php
+        modified:   resources/views/pages/account.blade.php
+        modified:   resources/views/pages/cart.blade.php
+        modified:   resources/views/pages/review-details.blade.php
+        modified:   routes/web.php
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        database/migrations/2024_10_22_052133_create_categories_table.php
+        database/migrations/2024_10_22_072652_create_products_galleries_table.php
+        database/migrations/2024_10_22_073203_create_carts_table.php
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+PS C:\laragon\www\bucket-diwna> git add .
+warning: in the working copy of 'public/style/pages/_account.scss', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/pages/account.blade.php', CRLF will be replaced 
+warning: in the working copy of 'resources/views/pages/cart.blade.php', CRLF will be replaced by 
+LF the next time Git touches it
+warning: in the working copy of 'resources/views/pages/review-details.blade.php', CRLF will be replaced by LF the next time Git touches it
+
+PS C:\laragon\www\bucket-diwna> git commit -m "initial commit"
+[main eaa5e80] initial commit
+ 13 files changed, 377 insertions(+), 716 deletions(-)
+ create mode 100644 database/migrations/2024_10_22_052133_create_categories_table.php
+ create mode 100644 database/migrations/2024_10_22_072652_create_products_galleries_table.php    
+ create mode 100644 database/migrations/2024_10_22_073203_create_carts_table.php
+ delete mode 100644 public/account-details-orders-done.html
+ delete mode 100644 public/style/pages/_dashboard.scss
+
+PS C:\laragon\www\bucket-diwna> git commit -a
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+PS C:\laragon\www\bucket-diwna>
