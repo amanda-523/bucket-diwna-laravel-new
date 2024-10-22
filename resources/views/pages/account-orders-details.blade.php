@@ -28,26 +28,21 @@ Store Account Orders Page
                     </div>
                     <div class="card-account card-list d-block">
                         <div class="card-body card-information-orders">
-                            <a href="#">
-                                <div class="row">
-                                    <div class="col-auto mr-0">
-                                        <img src="/icons/clipboard-text-outline.svg" alt="" />
-                                    </div>
-                                    <div class="col">
-                                        <h2>Informasi Pengiriman</h2>
-                                        <p>J&T: JNT0291283123</p>
-                                    </div>
-                                    <div class="col-auto">
-                                        <img src="/icons/chevron-right-ne20.svg" alt="" />
-                                    </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <img src="/icons/clipboard-text-outline.svg" alt="" />
                                 </div>
-                            </a>
+                                <div class="col-11">
+                                    <h2>Resi Pengiriman</h2>
+                                    <p>JNT0291283123</p>
+                                </div>
+                            </div>
                             <hr />
                             <div class="row">
-                                <div class="col-auto mr-0">
+                                <div class="col-1">
                                     <img src="/icons/map-marker-radius-outline.svg" alt="" />
                                 </div>
-                                <div class="col">
+                                <div class="col-11">
                                     <h2>Alamat Pengiriman</h2>
                                     <p>
                                         Amanda Saphira Sudrajat <br />
@@ -58,14 +53,14 @@ Store Account Orders Page
                             </div>
                             <hr />
                             <div class="row">
-                                <div class="col-auto mr-0">
+                                <div class="col-1">
                                     <img src="/images/bucket bunga.svg" alt="" />
                                 </div>
-                                <div class="col">
-                                    <h2 class="account-card-title">Bucket Bunga</h2>
-                                    <h5 class="account-card-subtitle">Rp 30.000</h5>
+                                <div class="col-9">
+                                    <h2 class="account-card-title ml-3">Bucket Bunga</h2>
+                                    <h5 class="account-card-subtitle ml-3">Rp 30.000</h5>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-2 text-right">
                                     <h5 class="account-card-subtitle">1x</h5>
                                 </div>
                             </div>
@@ -73,64 +68,54 @@ Store Account Orders Page
                                 <div class="col">
                                     <p>Subtotal</p>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-4 text-right">
                                     <p>Rp. 30.000</p>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
+                                <div class="col-8">
                                     <p>Pengiriman</p>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-4 text-right">
                                     <p>Rp. 15.000</p>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
+                                <div class="col-8">
                                     <h3>Total</h3>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-4 text-right">
                                     <h3>Rp. 11.000</h3>
                                 </div>
                             </div>
                             <hr />
                             <div class="row">
-                                <div class="col">
+                                <div class="col-8">
                                     <h2>No Pesanan</h2>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-4 text-right">
                                     <h2>2183189192BD</h2>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <p>Metode Pembayaran</p>
+                                <div class="col-8">
+                                    <p>Status Pembayaran</p>
                                 </div>
-                                <div class="col-auto">
-                                    <p>Transfer Bank (BRI)</p>
+                                <div class="col-4 text-right">
+                                    <h3 class="text-success">Berhasil</h3>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
+                                <div class="col-8">
                                     <p>Waktu Pemesanan</p>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-4 text-right">
                                     <p>4/08/2024</p>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
+                                <div class="col-8">
                                     <p>Waktu Pembayaran</p>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-4 text-right">
                                     <p>4/08/2024</p>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
+                                <div class="col-8">
                                     <p>Waktu Pengiriman</p>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-4 text-right">
                                     <p>5/08/2024</p>
                                 </div>
                             </div>
