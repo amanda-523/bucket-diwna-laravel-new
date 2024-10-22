@@ -10,7 +10,7 @@ Store Review Details Page
         <div class="account-heading">
             <h2 class="account-title">Detail Review</h2>
             <h5 class="account-subtitle">
-                Lihat nilai dan ulasan yang telah diberikan
+                Lihat ulasan yang telah diberikan
                 untuk pesanan Anda
             </h5>
             <hr />

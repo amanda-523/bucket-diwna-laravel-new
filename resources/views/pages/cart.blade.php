@@ -100,9 +100,9 @@ Store Cart Page
             <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="fullName">Nama Penerima</label>
+                        <label for="fullName">Nama Lengkap</label>
                         <input type="text" class="form-control" id="fullName" name="fullName"
-                            placeholder="Amanda S. Sudrajat" />
+                            placeholder="Amanda Sudrajat" />
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -165,7 +165,7 @@ Store Cart Page
                 </div>
                 <div class="col-4 col-md-3">
                     <div class="product-title">Rp 15.000</div>
-                    <div class="product-subtitle">Pengiriman</div>
+                    <div class="product-subtitle">Ongkir</div>
                 </div>
                 <div class="col-4 col-md-3">
                     <div class="product-title text-custom">

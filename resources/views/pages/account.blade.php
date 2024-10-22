@@ -19,18 +19,11 @@ Store Account Page
                         <div class="card-account">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="firstName">Nama Depan</label>
-                                            <input type="text" class="form-control" id="firstName" name="firstName"
-                                                value="Amanda" />
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="lastName">Nama Belakang</label>
-                                            <input type="text" class="form-control" id="lastName" name="lastName"
-                                                value="Sudrajat" />
+                                            <label for="fullName">Nama Lengkap</label>
+                                            <input type="text" class="form-control" id="fullName" name="fullName"
+                                                value="Amanda Sudrajat" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -40,11 +33,50 @@ Store Account Page
                                                 value="amandasdrjt523@gmail.com" />
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="address">Alamat Lengkap</label>
+                                            <input type="text" class="form-control" id="address" name="address"
+                                                placeholder="Psr. Hartana no 69" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="province">Provinsi</label>
+                                            <select name="province" id="province" class="form-control">
+                                                <option value="Jawa Barat">
+                                                    Jawa Barat
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="city">Kota</label>
+                                            <select name="city" id="city" class="form-control">
+                                                <option value="Cikampek">Cikampek</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="postalCode">Kode Pos</label>
+                                            <input type="text" class="form-control" id="postalCode" name="postalCode"
+                                                placeholder="44262" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="country">Negara</label>
+                                            <input type="text" class="form-control" id="country" name="country"
+                                                placeholder="Indonesia" />
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="phoneNumber">No. HP</label>
                                             <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
-                                                value="08136418892" />
+                                                placeholder="08136418892" />
                                         </div>
                                     </div>
                                 </div>

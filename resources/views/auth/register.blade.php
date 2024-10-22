@@ -13,10 +13,8 @@
                     </h2>
                     <form class="mt-2">
                         <div class="form-group">
-                            <label> Nama Depan </label>
-                            <input type="text" class="form-control w-75 is-valid" v-model="firstName" autofocus />
-                            <label> Nama Belakang </label>
-                            <input type="text" class="form-control w-75 is-valid" v-model="lastName" />
+                            <label> Nama Lengkap </label>
+                            <input type="text" class="form-control w-75 is-valid" v-model="fullName" autofocus />
                             <label> Email </label>
                             <input type="email" class="form-control w-75 is-invalid" v-model="email" />
                             <label> Password </label>
@@ -110,8 +108,7 @@
               });
             },
             data: {
-              firstName: "",
-              lastName: "",
+              fullName: "",
               email: "",
               password: "",
             },

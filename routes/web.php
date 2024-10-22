@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountAddressController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AccountOrderController;
+use App\Http\Controllers\AccountTransactionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
@@ -25,21 +26,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 Route::get('/categories-details', [CategoryController::class, 'detail'])->name('categories-details');
+
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/all-product', [ProductController::class, 'product'])->name('all-product');
 Route::get('/best-seller', [ProductController::class, 'best'])->name('best-seller');
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('details');
+
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/success', [CartController::class, 'success'])->name('success');
 
 Route::get('/register-success', [RegisteredUserController::class, 'success'])->name('register-success');
 
 Route::get('/account', [AccountController::class, 'index'])->name('account');
+
 Route::get('/account-address', [AccountAddressController::class, 'index'])->name('account-address');
 Route::get('/account-address-edit', [AccountAddressController::class, 'edit'])->name('account-address-edit');
 Route::get('/account-address-new', [AccountAddressController::class, 'new'])->name('account-address-new');
+
 Route::get('/account-orders', [AccountOrderController::class, 'index'])->name('account-orders');
 Route::get('/account-orders-details', [AccountOrderController::class, 'detail'])->name('account-orders-details');
 
