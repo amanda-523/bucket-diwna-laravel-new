@@ -31,7 +31,7 @@
                             Akun Saya
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="{{route('login')}}" class="dropdown-item">
+                        <a href="{{route('login')}}" class="dropdown-item text-danger">
                             Logout
                         </a>
                     </div>

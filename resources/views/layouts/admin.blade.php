@@ -7,37 +7,41 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>@yield('title')</title>
+    <title> @yield('title') </title>
 
     @stack('prepend-script')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="/style/main.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/v/bs4/dt-2.1.8/datatables.min.css" rel="stylesheet">
     @stack('addon-script')
 </head>
 
 <body>
-    <div class="page-account">
+    <div class="page-dashboard">
         <div class="d-flex" id="wrapper" data-aos="fade-right">
             <!-- Sidebar -->
             <div class="border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center">
-                    <img src="/images/logo-new.svg" alt="" class="my-4" />
+                    <img src="/images/logo-admin.svg" alt="" class="my-4" />
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="{{route('home')}}" class="list-group-item list-group-item-action" style="color: #5ca4df">
-                        <img src="/icons/chevron-left-pr50.svg" alt="" />
-                        Kembali ke Beranda
+                    <a href="{{route('admin-dashboard')}}" class="list-group-item list-group-item-action">
+                        Dashboard
                     </a>
-                    <a href="{{route('account')}}" class="list-group-item list-group-item-action">
-                        Akun Saya
+                    <a href="#" class="list-group-item list-group-item-action">
+                        Produk
                     </a>
-                    <a href="{{route('account-address')}}" class="list-group-item list-group-item-action">
-                        Alamat
+                    <a href="{{ route('category.index') }}"
+                        class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }}">
+                        Kategori
                     </a>
-                    <a href="{{route('account-orders')}}" class="list-group-item list-group-item-action">
-                        Pesanan
+                    <a href="#" class="list-group-item list-group-item-action">
+                        Transaksi
                     </a>
-                    <a href="{{route('login')}}" class="list-group-item list-group-item-action text-danger">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        Pengguna
+                    </a>
+                    <a href="/login.html" class="list-group-item list-group-item-action text-danger">
                         Logout
                     </a>
                 </div>
@@ -65,31 +69,16 @@
                                         Hi, Amanda
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a href="{{route('account')}}" class="dropdown-item">
-                                            Akun Saya
-                                        </a>
-                                        <div class="dropdown-divider"></div>
                                         <a href="{{route('login')}}" class="dropdown-item text-danger">
                                             Logout
                                         </a>
                                     </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{route('cart')}}" class="nav-link d-inline-block mt-2">
-                                        <img src="/icons/shopping-outline-blue.svg" alt="Cart" />
-                                        <div class="card-badge">3</div>
-                                    </a>
                                 </li>
                             </ul>
 
                             <ul class="navbar-nav d-block d-lg-none">
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">Hi, Amanda</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{route('cart')}}" class="nav-link d-inline-block">
-                                        Keranjang
-                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -104,8 +93,9 @@
 
     <!-- Bootstrap core JavaScript -->
     @stack('prepend-script')
-    <script src="/vendor/jquery/jquery.slim.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs4/dt-2.1.8/datatables.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();

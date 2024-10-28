@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('users_id');
-            $table->integer('shipping_price');
-            $table->integer('total_price');
-            $table->string('transaction_status'); // UNPAID/PENDING/SUCCESS/FAILED
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('shipping_status'); // PENDING/SHIPPING/SUCCESS
             $table->string('resi');
-            $table->timestamps();
         });
     }
 
@@ -27,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('shipping_status');
+            $table->dropColumn('resi');
+        });
     }
 };
