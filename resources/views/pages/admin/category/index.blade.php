@@ -23,7 +23,7 @@ Admin Kategori Page
                                 + Tambah Kategori
                             </a>
                             <div class="table-responsive">
-                                <table class="table-hover scroll-horizontal-vertical w-100" id="crudTable">
+                                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
