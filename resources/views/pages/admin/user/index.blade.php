@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin Kategori Page
+Admin User Page
 @endsection
 
 @section('content')
 <div class="section-content section-dashboard" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Kategori</h2>
+            <h2 class="dashboard-title">Pengguna</h2>
             <p class="dashboard-subtitle">
-                Ini adalah list kategori Bucket Diwna
+                Ini adalah list pengguna Bucket Diwna
             </p>
             <hr />
         </div>
@@ -19,8 +19,8 @@ Admin Kategori Page
                 <div class="col-md-12">
                     <div class="card-dashboard">
                         <div class="card-body">
-                            <a href="{{route('category.create')}}" class="btn btn-primary mb-3">
-                                + Tambah Kategori Baru
+                            <a href="{{route('user.create')}}" class="btn btn-primary mb-3">
+                                + Tambah Pengguna Baru
                             </a>
                             <div class="table-responsive">
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
@@ -28,8 +28,8 @@ Admin Kategori Page
                                         <tr>
                                             <th>ID</th>
                                             <th>Nama</th>
-                                            <th>Foto</th>
-                                            <th>Slug</th>
+                                            <th>Email</th>
+                                            <th>Roles</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -57,8 +57,8 @@ Admin Kategori Page
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },
-                { data: 'photo', name: 'photo' },
-                { data: 'slug', name: 'slug' },
+                { data: 'email', name: 'email' },
+                { data: 'roles', name: 'roles' },
                 {
                     data: 'action',
                     name: 'action',

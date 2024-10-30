@@ -28,17 +28,17 @@
                     <a href="{{route('admin-dashboard')}}" class="list-group-item list-group-item-action">
                         Dashboard
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <a href="" class="list-group-item list-group-item-action">
                         Produk
                     </a>
-                    <a href="{{ route('category.index') }}"
-                        class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }}">
+                    <a href="{{route('category.index')}}"
+                        class="list-group-item list-group-item-action {{(request()->is('admin/category*')) ? 'active' : ''}}">
                         Kategori
                     </a>
                     <a href="#" class="list-group-item list-group-item-action">
                         Transaksi
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <a href="{{route('user.index')}}" class="list-group-item list-group-item-action">
                         Pengguna
                     </a>
                     <a href="/login.html" class="list-group-item list-group-item-action text-danger">

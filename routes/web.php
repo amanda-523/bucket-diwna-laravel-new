@@ -5,6 +5,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AccountOrderController;
 use App\Http\Controllers\AccountTransactionController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
@@ -54,11 +55,11 @@ Route::get('/review', [ReviewController::class, 'index'])->name('review');
 Route::get('/review-details', [ReviewController::class, 'detail'])->name('review-details');
 
 Route::prefix('admin')
-    ->namespace('Admin')
     // ->middleware(['auth','admin'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('admin-dashboard');
-        Route::resource('category', 'CategoryController');
+        Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
+        Route::resource('user', UserController::class);
     });
 
 
