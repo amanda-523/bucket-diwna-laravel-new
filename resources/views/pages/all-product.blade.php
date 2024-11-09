@@ -31,65 +31,31 @@ Store All Product Page
     <section class="store-products">
         <div class="container">
             <div class="row">
-                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                    <a href="/details.html" class="component-products d-block">
+                @php
+                $incrementProduct = 0
+                @endphp
+                @forelse ($products as $product)
+                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="{{$incrementProduct+= 100}}">
+                    <a href="{{route('detail', $product->slug)}}" class="component-products d-block">
                         <div class="products-thumbnail">
                             <div class="products-image" style="
-                                            background-image: url('/images/bucket\ kosongan.svg');
-                                        "></div>
+                                        @if($product->galleries->count())
+                                        background-image: url('{{Storage::url($product->galleries->first()->photos)}}')
+                                        @else
+                                        background-color: #5ca4df
+                                        @endif
+                                    ">
+                            </div>
                         </div>
-                        <div class="products-text">Bucket Kosongan</div>
-                        <div class="products-price">Rp 20.000</div>
+                        <div class="products-text">{{$product->name}}</div>
+                        <div class="products-price">Rp {{number_format($product->price)}}</div>
                     </a>
                 </div>
-
-                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                    <a href="/details.html" class="component-products d-block">
-                        <div class="products-thumbnail">
-                            <div class="products-image" style="
-                                            background-image: url('/images/bucket\ bunga.svg');
-                                        "></div>
-                        </div>
-                        <div class="products-text">Bucket Bunga</div>
-                        <div class="products-price">Rp 30.000</div>
-                    </a>
+                @empty
+                <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+                    Tidak Ditemukan Produk
                 </div>
-
-                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                    <a href="/details.html" class="component-products d-block">
-                        <div class="products-thumbnail">
-                            <div class="products-image" style="
-                                            background-image: url('/images/bucket\ snack\ coklat.svg');
-                                        "></div>
-                        </div>
-                        <div class="products-text">Bucket Snack</div>
-                        <div class="products-price">Rp 60.000</div>
-                    </a>
-                </div>
-
-                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-                    <a href="/details.html" class="component-products d-block">
-                        <div class="products-thumbnail">
-                            <div class="products-image" style="
-                                            background-image: url('/images/bucket\ wisuda.svg');
-                                        "></div>
-                        </div>
-                        <div class="products-text">Bucket Wisuda</div>
-                        <div class="products-price">Rp 80.000</div>
-                    </a>
-                </div>
-
-                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="500">
-                    <a href="/details.html" class="component-products d-block">
-                        <div class="products-thumbnail">
-                            <div class="products-image" style="
-                                            background-image: url('/images/bucket\ uang.svg');
-                                        "></div>
-                        </div>
-                        <div class="products-text">Bucket Uang</div>
-                        <div class="products-price">Rp 100.000</div>
-                    </a>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>

@@ -45,7 +45,7 @@ class UserController extends Controller
                         </div>
                     ';
                 })
-                ->rawColumn(['action'])
+                ->rawColumns(['action'])
                 ->make();
         }
         return view('pages.admin.user.index');
@@ -100,10 +100,14 @@ class UserController extends Controller
     {
         $data = $request->all();
 
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/user', 'public');
-
         $item = User::findOrFail($id);
+
+        if ($request->password) {
+            $data['password'] =
+                bcrypt($request->password);
+        } else {
+            unset($data['password']);
+        }
 
         $item->update($data);
 

@@ -2,22 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        return view('pages.products');
+        $products = Product::with(['galleries'])->take(8)->get();
+        $bestSellers = Product::where('best_seller', true)->get();
+
+        return view(
+            'pages.products',
+            [
+                'products' => $products,
+                'bestSellers' => $bestSellers
+            ]
+        );
     }
 
     public function product()
     {
-        return view('pages.all-product');
+        $products = Product::with(['galleries'])->get();
+
+        return view('pages.all-product', [
+            'products' => $products,
+        ]);
     }
 
     public function best()
     {
-        return view('pages.best-seller');
+        $bestSellers = Product::where('best_seller', true)->get();
+
+        return view('pages.best-seller', [
+            'bestSellers' => $bestSellers,
+        ]);
     }
 }

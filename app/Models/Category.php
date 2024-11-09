@@ -17,7 +17,7 @@ class Category extends Model
         'slug'
     ];
 
-    protected $hideen = [
+    protected $hidden = [
         //
     ];
 }

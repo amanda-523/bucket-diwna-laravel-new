@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Store Details Page
+Store Detail Page
 @endsection
 
 @section('content')
@@ -25,7 +25,7 @@ Store Details Page
         </div>
     </section>
 
-    <section class="store-gallery" id="gallery">
+    <section class="store-gallery mb-3" id="gallery">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8" data-aos="zoom-in">
@@ -54,11 +54,23 @@ Store Details Page
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7">
-                        <h1>Bucket Bunga</h1>
-                        <div class="price">Rp 30.000</div>
+                        <h1>{{$products->name}}</h1>
+                        <div class="price">Rp {{number_format($products->price)}}</div>
                     </div>
                     <div class="col-lg-3" data-aos="zoom-in">
-                        <a href="/cart.html" class="btn btn-success px-4 text-white btn-block mb-3">Masuk Keranjang</a>
+                        @auth
+                        <form action="{{ route('detail-add', $products->id) }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <button type="submit" class="btn btn-success px-4 text-white btn-block mb-3">
+                                Masuk Keranjang
+                            </button>
+                        </form>
+                        @else
+                        <a href="{{route('login')}}" class="btn btn-success px-4 text-white btn-block mb-3">
+                            Login to Add
+                        </a>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -68,38 +80,7 @@ Store Details Page
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8">
-                        <p>
-                            Bucket Bunga terdapat 3 ukuran, yaitu small,
-                            medium, dan large. Bisa additional bunga,
-                            boneka teddy, boneka wisuda, dan yang
-                            lainnya. Bisa additional kertas jaring.
-                            Lorem ipsum dolor sit amet consectetur. Nibh
-                            laoreet nulla eu vitae pharetra elit aliquam
-                            arcu ac. Faucibus arcu at quisque enim
-                            egestas aliquet venenatis. Pellentesque est
-                            sit pellentesque imperdiet porttitor nunc in
-                            urna at. Mauris et quis id netus. Volutpat
-                            massa sodales accumsan massa iaculis eu
-                            habitant. Congue lacus sit lorem eget. Diam
-                            elit ut euismod lectus. Sed tortor nunc
-                            adipiscing imperdiet phasellus in sit auctor
-                            eget. Consectetur arcu eu malesuada nibh
-                            risus neque. Risus sed pulvinar eget nisl.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur. Nibh
-                            laoreet nulla eu vitae pharetra elit aliquam
-                            arcu ac. Faucibus arcu at quisque enim
-                            egestas aliquet venenatis. Pellentesque est
-                            sit pellentesque imperdiet porttitor nunc in
-                            urna at. Mauris et quis id netus. Volutpat
-                            massa sodales accumsan massa iaculis eu
-                            habitant. Congue lacus sit lorem eget. Diam
-                            elit ut euismod lectus. Sed tortor nunc
-                            adipiscing imperdiet phasellus in sit auctor
-                            eget. Consectetur arcu eu malesuada nibh
-                            risus neque. Risus sed pulvinar eget nisl.
-                        </p>
+                        <p>{!! $products->description !!}</p>
                     </div>
                 </div>
             </div>
@@ -184,22 +165,12 @@ Store Details Page
                     data: {
                         activePhoto: 0,
                         photos: [
-                            {
-                                id: 1,
-                                url: "/images/gallery-1.svg",
-                            },
-                            {
-                                id: 2,
-                                url: "/images/gallery-2.svg",
-                            },
-                            {
-                                id: 3,
-                                url: "/images/gallery-3.svg",
-                            },
-                            {
-                                id: 4,
-                                url: "/images/gallery-4.svg",
-                            },
+                            @foreach($products->galleries as $gallery)
+                                {
+                                id: {{$gallery->id}},
+                                url: "{{ Storage::url($gallery->photos) }}",
+                                },
+                            @endforeach
                         ],
                     },
                     methods: {

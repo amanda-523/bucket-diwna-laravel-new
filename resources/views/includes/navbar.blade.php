@@ -17,28 +17,47 @@
                 <li class="nav-item">
                     <a href="{{ route('products') }}" class="nav-link">Produk</a>
                 </li>
+                @guest
+                <li class="nav-item">
+                    <a href="{{ route('login') }}" class="nav-link btn btn-success px-4 text-white">Login</a>
+                </li>
+                @endguest
             </ul>
 
-            <!-- Desktop Menu -->
+            @auth
             <ul class="navbar-nav d-none d-lg-flex">
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown">
                         <img src="/images/ava AM.svg" alt="Profile" class="rounded-circle mr-2 profile-picture" />
-                        Hi, Amanda
+                        Hi, {{Auth::user()->name}}
                     </a>
                     <div class="dropdown-menu">
                         <a href="{{route('account')}}" class="dropdown-item">
                             Akun Saya
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="{{route('login')}}" class="dropdown-item text-danger">
-                            Logout
+                        <a href="{{route('logout')}}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="dropdown-item text-danger">
+                            {{__('Logout')}}
                         </a>
+
+                        <form action="{{route('logout')}}" id="logout-form" method="POST" style="display: none">
+                            @csrf
+                        </form>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('cart')}}" class="nav-link d-inline-block mt-2">
+                        @php
+                        $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+                        @endphp
+                        @if ($carts > 0)
                         <img src="/icons/shopping-outline-blue.svg" alt="Cart" />
+                        <div class="card-badge">{{ $carts }}</div>
+                        @else
+                        <img src="/icons/shopping-outline-blue.svg" alt="Cart" />
+                        @endif
                     </a>
                 </li>
             </ul>
@@ -51,6 +70,7 @@
                     <a href="{{route('cart')}}" class="nav-link d-inline-block">Keranjang</a>
                 </li>
             </ul>
+            @endauth
         </div>
     </div>
 </nav>

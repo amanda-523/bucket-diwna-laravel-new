@@ -48,7 +48,7 @@ class CategoryController extends Controller
                 ->editColumn('photo', function ($item) {
                     return $item->photo ? '<img src="' . Storage::url($item->photo) . '" style="max-height: 48px;"/>' : '';
                 })
-                ->rawColumn(['action', 'photo'])
+                ->rawColumns(['action', 'photo'])
                 ->make();
         }
         return view('pages.admin.category.index');

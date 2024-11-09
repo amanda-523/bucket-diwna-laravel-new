@@ -5,19 +5,27 @@
     <section class="store-auth" data-aos="fade-up">
         <div class="container">
             <div class="row align-items-center row-login justify-content-center">
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <h1>Lupa Password?</h1>
                     <h2 style="font-size: 18px">
                         Masukkan alamat email Anda dan kami akan mengirimkan tautan
                         untuk mengatur ulang kata sandi Anda.
                     </h2>
-                    <form action="" class="mt-2">
+                    <form method="POST" action="{{ route('password.email') }}" class="mt-2">
+                        @csrf
                         <div class="form-group mb-0">
                             <label> Email </label>
-                            <input type="email" class="form-control" id="email" placeholder="Masukkan email Anda" />
+                            <input id="email" class="form-control @error('email') is-invalid @enderror" type="email"
+                                name="email" value="{{ old('email') }}" required autofocus
+                                placeholder="Masukkan email Anda" />
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                            @enderror
                         </div>
-                        <button type="submit" class="btn btn-success btn-block mt-4">
-                            Kirim
+                        <button class="btn btn-success btn-block mt-4">
+                            {{ __('Reset Password') }}
                         </button>
                         <p class="pt-2">
                             <a href="{{route('login')}}">Kembali ke Login</a>

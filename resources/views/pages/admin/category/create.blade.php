@@ -10,12 +10,16 @@ Admin Kategori Page
         <div class="dashboard-heading">
             <h2 class="dashboard-title">Kategori</h2>
             <p class="dashboard-subtitle">
-                Buat Baru Kategori
+                Buat baru kategori
             </p>
             <hr />
         </div>
         <div class="dashboard-content">
-            <div class="row">
+            <a href="{{route('category.index')}}" class="nav-back">
+                <img src="/icons/chevron-left-sc50.svg" alt="" />
+                Kembali
+            </a>
+            <div class="row mt-4">
                 <div class="col-md-12">
                     @if ($errors->any())
                     <div class="alert alert-danger">

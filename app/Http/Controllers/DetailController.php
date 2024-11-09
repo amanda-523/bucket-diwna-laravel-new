@@ -3,11 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class DetailController extends Controller
 {
-    public function index()
+    public function index(Request $request, $id)
     {
-        return view('pages.details');
+        $products = Product::with(['galleries'])->where('slug', $id)->firstOrFail();
+
+        return view('pages.detail', [
+            'products' => $products
+        ]);
+    }
+
+    public function add(Request $request, $id)
+    {
+        $data = [
+            'products_id' => $id,
+            'users_id' => Auth::user()->id,
+        ];
+
+        Cart::create($data);
+
+        return redirect()->route('cart');
     }
 }

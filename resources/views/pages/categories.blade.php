@@ -14,50 +14,62 @@ Store Category Page
                 </div>
             </div>
             <div class="row">
-                <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
-                    <a href="{{route('categories-details')}}" class="component-categories d-block">
+                @php
+                $incrementCategory = 0
+                @endphp
+                @forelse ($categories as $category)
+                <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="{{$incrementCategory+= 100}}">
+                    <a href="{{route('categories-detail', $category->slug)}}" class="component-categories d-block">
                         <div class="categories-image">
-                            <img src="/images/categories-bucket-kosongan.svg" alt="" class="w-100" />
+                            <img src="{{Storage::url($category->photo)}}" alt="" class="w-100" />
                         </div>
-                        <p class="categories-text">Kosongan</p>
+                        <p class="categories-text">{{$category->name}}</p>
                     </a>
                 </div>
-
-                <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="200">
-                    <a href="/categories-details.html" class="component-categories d-block">
-                        <div class="categories-image">
-                            <img src="/images/categories-bucket-bunga.svg" alt="" class="w-100" />
+                @empty
+                <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+                    Tidak Ditemukan Kategori
+                </div>
+                @endforelse
+            </div>
+        </div>
+    </section>
+    <section class="store-products">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" data-aos="fade-up">
+                    <h5>
+                        {{ isset($selectedCategory) ? 'Produk Kategori ' . $selectedCategory->name : 'Semua Produk'
+                        }}
+                    </h5>
+                </div>
+            </div>
+            <div class="row">
+                @php
+                $incrementProduct = 0
+                @endphp
+                @forelse ($products as $product)
+                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="{{$incrementProduct+= 100}}">
+                    <a href="{{route('detail', $product->slug)}}" class="component-products d-block">
+                        <div class="products-thumbnail">
+                            <div class="products-image" style="
+                                    @if($product->galleries->count())
+                                    background-image: url('{{Storage::url($product->galleries->first()->photos)}}')
+                                    @else
+                                    background-color: #5ca4df
+                                    @endif
+                                ">
+                            </div>
                         </div>
-                        <p class="categories-text">Bunga</p>
+                        <div class="products-text">{{$product->name}}</div>
+                        <div class="products-price">Rp {{number_format($product->price)}}</div>
                     </a>
                 </div>
-
-                <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="300">
-                    <a href="/categories-details.html" class="component-categories d-block">
-                        <div class="categories-image">
-                            <img src="/images/categories-bucket-snack.svg" alt="" class="w-100" />
-                        </div>
-                        <p class="categories-text">Snack</p>
-                    </a>
+                @empty
+                <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+                    Tidak Ditemukan Produk
                 </div>
-
-                <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="400">
-                    <a href="/categories-details.html" class="component-categories d-block">
-                        <div class="categories-image">
-                            <img src="/images/categories-bucket-uang.svg" alt="" class="w-100" />
-                        </div>
-                        <p class="categories-text">Uang</p>
-                    </a>
-                </div>
-
-                <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="500">
-                    <a href="/categories-details.html" class="component-categories d-block">
-                        <div class="categories-image">
-                            <img src="/images/categories-bucket-custom.svg" alt="" class="w-100" />
-                        </div>
-                        <p class="categories-text">Custom</p>
-                    </a>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>
