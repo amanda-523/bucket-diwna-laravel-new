@@ -40,30 +40,33 @@ Route::get('/best-seller', [ProductController::class, 'best'])->name('best-selle
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('detail');
 Route::post('/details/{id}', [DetailController::class, 'add'])->name('detail-add');
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
-
-Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
-// Route::post('/checkout/callback', [CheckoutController::class, 'callback'])->name('midtrans-callback');
+Route::post('/checkout/callback', [CheckoutController::class, 'callback'])->name('midtrans-callback');
 
 Route::get('/success', [CartController::class, 'success'])->name('success');
 
 Route::get('/register-success', [RegisteredUserController::class, 'success'])->name('register-success');
 
-Route::get('/account', [AccountController::class, 'index'])->name('account');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
 
-Route::get('/account-address', [AccountAddressController::class, 'index'])->name('account-address');
-Route::get('/account-address-edit', [AccountAddressController::class, 'edit'])->name('account-address-edit');
-Route::get('/account-address-new', [AccountAddressController::class, 'new'])->name('account-address-new');
+    Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
 
-Route::get('/account-orders', [AccountOrderController::class, 'index'])->name('account-orders');
-Route::get('/account-orders-details', [AccountOrderController::class, 'detail'])->name('account-orders-details');
+    Route::get('/account', [AccountController::class, 'index'])->name('account');
 
-Route::get('/review', [ReviewController::class, 'index'])->name('review');
-Route::get('/review-details', [ReviewController::class, 'detail'])->name('review-details');
+    Route::get('/account-address', [AccountAddressController::class, 'index'])->name('account-address');
+    Route::get('/account-address-edit', [AccountAddressController::class, 'edit'])->name('account-address-edit');
+    Route::get('/account-address-new', [AccountAddressController::class, 'new'])->name('account-address-new');
+
+    Route::get('/account-orders', [AccountOrderController::class, 'index'])->name('account-orders');
+    Route::get('/account-orders-details', [AccountOrderController::class, 'detail'])->name('account-orders-details');
+
+    Route::get('/review', [ReviewController::class, 'index'])->name('review');
+    Route::get('/review-details', [ReviewController::class, 'detail'])->name('review-details');
+});
 
 Route::prefix('admin')
-    // ->middleware(['auth','admin'])
+    ->middleware(['auth', 'admin'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('admin-dashboard');
         Route::resource('category', App\Http\Controllers\Admin\CategoryController::class);

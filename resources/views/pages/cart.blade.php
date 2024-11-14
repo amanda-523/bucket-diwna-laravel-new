@@ -158,7 +158,8 @@ Store Cart Page
                         <div class="product-subtitle">Total</div>
                     </div>
                     <div class="col-12 col-md-3">
-                        <button type="submit" class="btn btn-success mt-4 px-4 btn-block">
+                        <button type="submit" class="btn btn-success mt-4 px-4 btn-block"
+                            style="background: #f5952f; border-color: #f5952f">
                             Checkout
                         </button>
                     </div>
