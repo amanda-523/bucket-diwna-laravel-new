@@ -28,18 +28,27 @@
                         <img src="/icons/chevron-left-pr50.svg" alt="" />
                         Kembali ke Beranda
                     </a>
-                    <a href="{{route('account')}}" class="list-group-item list-group-item-action">
+                    <a href="{{route('account')}}"
+                        class="list-group-item list-group-item-action {{(request()->is('account')) ? 'active' : ''}}">
                         Akun Saya
                     </a>
-                    <a href="{{route('account-address')}}" class="list-group-item list-group-item-action">
+                    <a href="{{route('account-address')}}"
+                        class="list-group-item list-group-item-action {{(request()->is('account-address*')) ? 'active' : ''}}">
                         Alamat
                     </a>
-                    <a href="{{route('account-orders')}}" class="list-group-item list-group-item-action">
-                        Pesanan
+                    <a href="{{route('account-transactions')}}"
+                        class="list-group-item list-group-item-action {{(request()->is('account-transactions*')) ? 'active' : ''}}">
+                        Transaksi
                     </a>
-                    <a href="{{route('login')}}" class="list-group-item list-group-item-action text-danger">
+                    <a href="{{route('logout')}}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="list-group-item list-group-item-action text-danger">
                         Logout
                     </a>
+
+                    <form action="{{route('logout')}}" id="logout-form" method="POST" style="display: none">
+                        @csrf
+                    </form>
                 </div>
             </div>
 
@@ -60,31 +69,52 @@
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link" id="navbarDropdown" role="button"
                                         data-toggle="dropdown">
-                                        <img src="/images/ava AM.svg" alt="Profile"
+                                        @if (Auth::user()->profile_picture)
+                                        <img src="{{ Storage::url($user->profile_picture) }}" alt="Profile"
                                             class="rounded-circle mr-2 profile-picture" />
-                                        Hi, Amanda
+                                        @else
+                                        <img src="/images/ava-no profile.svg" alt="Profile"
+                                            class="rounded-circle mr-2 profile-picture" />
+                                        @endif
+                                        Hi, {{Auth::user()->name}}
                                     </a>
                                     <div class="dropdown-menu">
                                         <a href="{{route('account')}}" class="dropdown-item">
                                             Akun Saya
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a href="{{route('login')}}" class="dropdown-item text-danger">
+                                        <a href="{{route('logout')}}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            class="dropdown-item text-danger">
                                             Logout
                                         </a>
+
+                                        <form action="{{route('logout')}}" id="logout-form" method="POST"
+                                            style="display: none">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('cart')}}" class="nav-link d-inline-block mt-2">
+                                        @php
+                                        $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+                                        @endphp
+                                        @if ($carts > 0)
                                         <img src="/icons/shopping-outline-blue.svg" alt="Cart" />
-                                        <div class="card-badge">3</div>
+                                        <div class="card-badge">{{ $carts }}</div>
+                                        @else
+                                        <img src="/icons/shopping-outline-blue.svg" alt="Cart" />
+                                        @endif
                                     </a>
                                 </li>
                             </ul>
 
                             <ul class="navbar-nav d-block d-lg-none">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Hi, Amanda</a>
+                                    <a href="{{route('account')}}" class="nav-link">
+                                        Hi, {{Auth::user()->name}}
+                                    </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('cart')}}" class="nav-link d-inline-block">

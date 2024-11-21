@@ -48,21 +48,27 @@ Route::get('/register-success', [RegisteredUserController::class, 'success'])->n
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::get('/cart/address', [CartController::class, 'address'])->name('cart-address');
+    Route::post('/cart/address/selected', [CartController::class, 'selectAddress'])->name('cart-address-selected');
     Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
 
     Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
 
     Route::get('/account', [AccountController::class, 'index'])->name('account');
+    Route::post('/account/{redirect}', [AccountController::class, 'update'])->name('account-redirect');
 
-    Route::get('/account-address', [AccountAddressController::class, 'index'])->name('account-address');
-    Route::get('/account-address-edit', [AccountAddressController::class, 'edit'])->name('account-address-edit');
-    Route::get('/account-address-new', [AccountAddressController::class, 'new'])->name('account-address-new');
+    Route::get('/account/address', [AccountAddressController::class, 'index'])->name('account-address');
+    Route::get('/account/address/create', [AccountAddressController::class, 'create'])->name('account-address-create');
+    Route::post('/account/address/store', [AccountAddressController::class, 'store'])->name('account-address-store');
+    Route::get('/account/address/{id}/edit', [AccountAddressController::class, 'edit'])->name('account-address-edit');
+    Route::put('/account/address/{id}', [AccountAddressController::class, 'update'])->name('account-address-update');
+    Route::delete('/account/address/{id}', [AccountAddressController::class, 'destroy'])->name('account-address-delete');
 
-    Route::get('/account-orders', [AccountOrderController::class, 'index'])->name('account-orders');
-    Route::get('/account-orders-details', [AccountOrderController::class, 'detail'])->name('account-orders-details');
+    Route::get('/account/transactions', [AccountTransactionController::class, 'index'])->name('account-transactions');
+    Route::get('/account/transactions/{id}}', [AccountTransactionController::class, 'detail'])->name('account-transaction-details');
 
     Route::get('/review', [ReviewController::class, 'index'])->name('review');
-    Route::get('/review-details', [ReviewController::class, 'detail'])->name('review-details');
+    Route::get('/review-details', [ReviewController::class, 'details'])->name('review-details');
 });
 
 Route::prefix('admin')

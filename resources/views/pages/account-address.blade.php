@@ -17,24 +17,27 @@ Store Account Address Page
         <div class="account-content">
             <div class="row">
                 <div class="col-12">
-                    <a href="{{route('account-address-new')}}" class="btn btn-success">Tambah Alamat Baru</a>
+                    <a href="{{ route('account-address-create') }}" class="btn btn-success">Tambah Alamat Baru</a>
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-12">
+                @foreach ($addresses as $address)
+                <div class="col-12 mb-3">
                     <div class="card-account">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-11">
-                                    <h2>Amanda Sudrajat</h2>
-                                    <h5>08136418892</h5>
-                                    <h5>
-                                        Psr. Hartana no 69,
-                                        Cikampek 44262
-                                    </h5>
+                                    <h2>{{ $address->name }}</h2>
+                                    @if($address->is_selected)
+                                    <span class="badge badge-primary">Utama</span>
+                                    @endif
+                                    <h5>{{ $address->phone_number }}</h5>
+                                    <h5>{{ $address->address }}, {{ $address->provinces->name }},
+                                        {{ $address->regencies->name }}, {{ $address->zip_code }}</h5>
+                                    <h5>{{ $address->country }}</h5>
                                 </div>
                                 <div class="col-1">
-                                    <a href="{{route('account-address-edit')}}" class="edit-button">
+                                    <a href="{{ route('account-address-edit', $address->id) }}" class="edit-button">
                                         Edit
                                     </a>
                                 </div>
@@ -42,29 +45,7 @@ Store Account Address Page
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12">
-                    <div class="card-account">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-11">
-                                    <h2>Anita Lestari</h2>
-                                    <h5>0299 6418 892</h5>
-                                    <h5>
-                                        Dk. Pagac no 7,
-                                        Kefamenanu 39758
-                                    </h5>
-                                </div>
-                                <div class="col-1">
-                                    <a href="{{route('account-address-edit')}}" class="edit-button">
-                                        Edit
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

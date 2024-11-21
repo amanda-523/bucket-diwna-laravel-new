@@ -68,71 +68,32 @@ Store Cart Page
                 <div class="col-12">
                     <hr />
                 </div>
-                <div class="col-12">
-                    <h2 class="mb-4">Detail Pengiriman</h2>
+                <div class="col-8">
+                    <h2 class="mb-4">Alamat Pengiriman</h2>
                 </div>
+                <div class="col-md-4 text-right">
+                    <a href="{{route('cart-address')}}" class="btn btn-success">
+                        Pilih
+                    </a>
+                </div>
+            </div>
+            <div class="row align-items-center mb-2" data-aos="fade-up" data-aos-delay="200">
+                @if($address)
+                <div class="col-12">
+                    <p>{{ $address->name }} <br />
+                        {{ $address->phone_number }} <br />
+                        {{ $address->address }}, {{ $address->provinces->name }}, {{ $address->regencies->name }}, {{
+                        $address->zip_code }}<br />
+                        {{ $address->country }}
+                    </p>
+                </div>
+                @else
+                <div class="col-12 text-danger">Tidak ada alamat yang tersedia.</div>
+                @endif
             </div>
             <form action="{{route('checkout')}}" id="locations" enctype="multipart/form-data" method="POST">
                 @csrf
                 <input type="hidden" name="total_price" value="{{$totalPrice}}">
-                <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="name">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="name" name="name" value="Amanda Sudrajat" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="address">Alamat Lengkap</label>
-                            <input type="text" class="form-control" id="address" name="address"
-                                value="Psr. Hartana no 69" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="provinces_id">Provinsi</label>
-                            <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces"
-                                v-model="provinces_id">
-                                <option v-for="province in provinces" :value="province.id">
-                                    @{{ province.name }}
-                                </option>
-                            </select>
-                            <select v-else class="form-control"></select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="regencies_id">Kota</label>
-                            <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies"
-                                v-model="regencies_id">
-                                <option v-for="regency in regencies" :value="regency.id">
-                                    @{{ regency.name }}
-                                </option>
-                            </select>
-                            <select v-else class="form-control"></select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="zip_code">Kode Pos</label>
-                            <input type="text" class="form-control" id="zip_code" name="zip_code" value="44262" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="country">Negara</label>
-                            <input type="text" class="form-control" id="country" name="country" value="Indonesia" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="phone_number">No. HP</label>
-                            <input type="text" class="form-control" id="phone_number" name="phone_number"
-                                value="08136418892" />
-                        </div>
-                    </div>
-                </div>
                 <div class="row" data-aos="fade-up" data-aos-delay="150">
                     <div class="col-12">
                         <hr />
@@ -169,46 +130,3 @@ Store Cart Page
     </section>
 </div>
 @endsection
-
-@push('addon-script')
-<script src="/vendor/vue/vue.js"></script>
-<script src="https://unpkg.com/vue-toasted"></script>
-<script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
-<script>
-    var locations = new Vue({
-                    el: "#locations",
-                    mounted() {
-                        AOS.init();
-                        this.getProvincesData();
-                    },
-                    data: {
-                        provinces: null,
-                        regencies: null,
-                        provinces_id: null,
-                        regencies_id: null
-                    },
-                    methods: {
-                        getProvincesData() {
-                            var self = this;
-                            axios.get('{{ route('api-provinces') }}')
-                            .then(function (response) {
-                                self.provinces = response.data;
-                            })
-                        },
-                        getRegenciesData() {
-                            var self = this;
-                            axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
-                            .then(function (response) {
-                            self.regencies = response.data;
-                            })
-                        },
-                    },
-                    watch: {
-                        provinces_id: function(val, oldVal) {
-                            this.regencies_id = null;
-                            this.getRegenciesData();
-                        }
-                    }
-                });
-</script>
-@endpush

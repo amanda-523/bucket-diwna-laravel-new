@@ -28,7 +28,13 @@
             <ul class="navbar-nav d-none d-lg-flex">
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <img src="/images/ava AM.svg" alt="Profile" class="rounded-circle mr-2 profile-picture" />
+                        @if (Auth::user()->profile_picture)
+                        <img src="{{ Storage::url(Auth::user()->profile_picture) }}" alt="Profile"
+                            class="rounded-circle mr-2 profile-picture" />
+                        @else
+                        <img src="/images/ava-no profile.svg" alt="Profile"
+                            class="rounded-circle mr-2 profile-picture" />
+                        @endif
                         Hi, {{Auth::user()->name}}
                     </a>
                     <div class="dropdown-menu">
@@ -39,7 +45,7 @@
                         <a href="{{route('logout')}}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                             class="dropdown-item text-danger">
-                            {{__('Logout')}}
+                            Logout
                         </a>
 
                         <form action="{{route('logout')}}" id="logout-form" method="POST" style="display: none">
@@ -64,7 +70,9 @@
 
             <ul class="navbar-nav d-block d-lg-none">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Hi, Amanda</a>
+                    <a href="{{route('account')}}" class="nav-link">
+                        Hi, {{Auth::user()->name}}
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('cart')}}" class="nav-link d-inline-block">Keranjang</a>
