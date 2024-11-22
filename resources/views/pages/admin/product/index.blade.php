@@ -63,7 +63,7 @@ Admin Product Page
                     data: 'action',
                     name: 'action',
                     orderable: false,
-                    searcable: false,
+                    searchable: false,
                     width: '15%',
                 },
             ]

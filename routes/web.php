@@ -79,6 +79,10 @@ Route::prefix('admin')
         Route::resource('user', App\Http\Controllers\Admin\UserController::class);
         Route::resource('product', App\Http\Controllers\Admin\ProductController::class);
         Route::resource('product-gallery', App\Http\Controllers\Admin\ProductGalleryController::class);
+        Route::resource('transaction', App\Http\Controllers\Admin\TransactionController::class);
+
+        Route::post('transaction/toggle-status/{id}', [App\Http\Controllers\Admin\TransactionController::class, 'toggleStatus'])
+            ->name('transaction.toggleStatus');
     });
 
 

@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin Product Gallery Page
+Admin Transaction Page
 @endsection
 
 @section('content')
 <div class="section-content section-dashboard" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Galeri Produk</h2>
+            <h2 class="dashboard-title">Transaksi</h2>
             <p class="dashboard-subtitle">
-                Ini adalah list galeri produk Bucket Diwna
+                Ini adalah list transaksi Bucket Diwna
             </p>
             <hr />
         </div>
@@ -19,16 +19,14 @@ Admin Product Gallery Page
                 <div class="col-md-12">
                     <div class="card-dashboard">
                         <div class="card-body">
-                            <a href="{{route('product-gallery.create')}}" class="btn btn-primary mb-3">
-                                + Tambah Produk Baru
-                            </a>
                             <div class="table-responsive">
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Nama Produk</th>
-                                            <th>Foto</th>
+                                            <th>Nama</th>
+                                            <th>Total</th>
+                                            <th>Status Transaksi</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -55,16 +53,39 @@ Admin Product Gallery Page
             },
             columns: [
                 { data: 'id', name: 'id' },
-                { data: 'product.name', name: 'product.name' },
-                { data: 'photos', name: 'photos' },
+                { data: 'user.name', name: 'user.name' },
+                { data: 'total_price', name: 'total_price' },
+                { data: 'transaction_status', name: 'transaction_status' },
                 {
-                    data: 'action',
-                    name: 'action',
+                    data: 'toggle_status',
+                    name: 'toggle_status',
                     orderable: false,
                     searchable: false,
                     width: '15%',
                 },
             ]
         })
+</script>
+<script>
+    $(document).on('change', '.toggle-status', function() {
+        const transactionId = $(this).data('id');
+        const status = $(this).is(':checked') ? 'SUCCESS' : 'PENDING';
+        
+        $.ajax({
+            url: `/admin/transaction/toggle-status/${transactionId}`,
+            method: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                status: status
+            },
+            success: function(response) {
+                if(response.success) {
+                    alert('Status updated successfully');
+                } else {
+                    alert('Failed to update status');
+                }
+            }
+        });
+    });
 </script>
 @endpush

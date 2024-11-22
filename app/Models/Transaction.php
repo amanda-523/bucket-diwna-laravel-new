@@ -19,7 +19,6 @@ class Transaction extends Model
         'shipping_price',
         'transaction_status',
         'total_price',
-        'code',
     ];
 
     /**
@@ -34,5 +33,10 @@ class Transaction extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'users_id', 'id');
+    }
+
+    public function details()
+    {
+        return $this->hasMany(TransactionDetail::class, 'transactions_id', 'id');
     }
 }
