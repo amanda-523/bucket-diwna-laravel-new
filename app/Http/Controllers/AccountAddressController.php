@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -11,6 +12,8 @@ class AccountAddressController extends Controller
 {
     public function index()
     {
+        Debugbar::enable();
+
         $addresses = Address::where('user_id', Auth::id())->get();
         return view('pages.account-address', compact('addresses'));
     }

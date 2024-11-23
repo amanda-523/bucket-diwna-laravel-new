@@ -40,7 +40,7 @@
                         class="list-group-item list-group-item-action {{(request()->is('admin/category*')) ? 'active' : ''}}">
                         Kategori
                     </a>
-                    <a href="{{route('transaction.index')}}"
+                    <a href="#"
                         class="list-group-item list-group-item-action {{(request()->is('admin/transaction*')) ? 'active' : ''}}">
                         Transaksi
                     </a>
