@@ -32,8 +32,10 @@ Store Account Address Page
                                     <span class="badge badge-primary">Utama</span>
                                     @endif
                                     <h5>{{ $address->phone_number }}</h5>
-                                    <h5>{{ $address->address }}, {{ $address->provinces->name }},
-                                        {{ $address->regencies->name }}, {{ $address->zip_code }}</h5>
+                                    <h5>{{ $address->address }}, {{ $address->provinces->name ?? 'Provinsi tidak
+                                        ditemukan' }},
+                                        {{ $address->regencies->name ?? 'Kota tidak ditemukan' }}, {{ $address->zip_code
+                                        }}</h5>
                                     <h5>{{ $address->country }}</h5>
                                 </div>
                                 <div class="col-1">

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -12,11 +11,10 @@ class AccountAddressController extends Controller
 {
     public function index()
     {
-        Debugbar::enable();
-
-        $addresses = Address::where('user_id', Auth::id())->get();
+        $addresses = Address::with(['provinces', 'regencies'])->where('users_id', Auth::id())->get();
         return view('pages.account-address', compact('addresses'));
     }
+
 
     public function create()
     {
@@ -26,7 +24,6 @@ class AccountAddressController extends Controller
     public function store(Request $request)
     {
         Log::debug('Request Data:', $request->all());
-        dd($request->all());
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
