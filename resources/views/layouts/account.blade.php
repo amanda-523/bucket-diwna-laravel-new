@@ -69,13 +69,8 @@
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link" id="navbarDropdown" role="button"
                                         data-toggle="dropdown">
-                                        @if (Auth::user()->profile_picture)
-                                        <img src="{{ Storage::url($user->profile_picture) }}" alt="Profile"
-                                            class="rounded-circle mr-2 profile-picture" />
-                                        @else
                                         <img src="/images/ava-no profile.svg" alt="Profile"
                                             class="rounded-circle mr-2 profile-picture" />
-                                        @endif
                                         Hi, {{Auth::user()->name}}
                                     </a>
                                     <div class="dropdown-menu">

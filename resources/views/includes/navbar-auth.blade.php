@@ -9,13 +9,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link">Beranda</a>
+                    <a href="{{ route('home') }}" class="nav-link {{(request()->is('/*')) ? 'active' : ''}}">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('categories') }}" class="nav-link">Kategori</a>
+                    <a href="{{ route('categories') }}"
+                        class="nav-link {{(request()->is('categories*')) ? 'active' : ''}}">Kategori</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('products') }}" class="nav-link">Produk</a>
+                    <a href="{{ route('products') }}"
+                        class="nav-link {{(request()->is('products*')) ? 'active' : ''}}">Produk</a>
                 </li>
             </ul>
         </div>

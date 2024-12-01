@@ -9,13 +9,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link">Beranda</a>
+                    <a href="{{ route('home') }}" class="nav-link {{(request()->is('/*')) ? 'active' : ''}}">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('categories') }}" class="nav-link">Kategori</a>
+                    <a href="{{ route('categories') }}"
+                        class="nav-link {{(request()->is('categories*')) ? 'active' : ''}}">Kategori</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('products') }}" class="nav-link">Produk</a>
+                    <a href="{{ route('products') }}"
+                        class="nav-link {{(request()->is('products*')) ? 'active' : ''}}">Produk</a>
                 </li>
                 @guest
                 <li class="nav-item">
@@ -28,13 +30,8 @@
             <ul class="navbar-nav d-none d-lg-flex">
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        @if (Auth::user()->profile_picture)
-                        <img src="{{ Storage::url(Auth::user()->profile_picture) }}" alt="Profile"
-                            class="rounded-circle mr-2 profile-picture" />
-                        @else
                         <img src="/images/ava-no profile.svg" alt="Profile"
                             class="rounded-circle mr-2 profile-picture" />
-                        @endif
                         Hi, {{Auth::user()->name}}
                     </a>
                     <div class="dropdown-menu">

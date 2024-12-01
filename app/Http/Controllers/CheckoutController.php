@@ -20,6 +20,16 @@ class CheckoutController extends Controller
 {
     public function process(Request $request)
     {
+        // Validasi alamat
+        $user = Auth::user();
+        $selectedAddress = $user->addresses()->where('is_selected', true)->first();
+
+        if (!$selectedAddress) {
+            return redirect()->route('cart')->withErrors([
+                'address' => 'Silakan pilih alamat pengiriman sebelum melanjutkan checkout.',
+            ]);
+        }
+
         // Save users data
         $user = Auth::user();
         $user->update($request->except('total_price'));

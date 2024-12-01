@@ -11,7 +11,7 @@ class AccountAddressController extends Controller
 {
     public function index()
     {
-        $addresses = Address::with(['provinces', 'regencies'])->where('users_id', Auth::id())->get();
+        $addresses = Address::with(['provinces', 'regencies'])->where('user_id', Auth::id())->get();
         return view('pages.account-address', compact('addresses'));
     }
 
@@ -23,8 +23,6 @@ class AccountAddressController extends Controller
 
     public function store(Request $request)
     {
-        Log::debug('Request Data:', $request->all());
-
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string',

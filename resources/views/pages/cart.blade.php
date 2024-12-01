@@ -5,6 +5,11 @@ Store Cart Page
 @endsection
 
 @section('content')
+@if ($errors->has('address'))
+<div class="alert alert-danger">
+    {{ $errors->first('address') }}
+</div>
+@endif
 <div class="page-content page-cart">
     <section class="store-breadcrumbs" data-aos="fade-down" data-aos-delay="100">
         <div class="container">
@@ -69,9 +74,9 @@ Store Cart Page
                     <hr />
                 </div>
                 <div class="col-8">
-                    <h2 class="mb-4">Alamat Pengiriman</h2>
+                    <h2 class="mb-4">Informasi Pengiriman</h2>
                 </div>
-                <div class="col-md-4 text-right">
+                <div class="col-4 text-right">
                     <a href="{{route('cart-address')}}" class="btn btn-success">
                         Pilih
                     </a>
@@ -120,7 +125,7 @@ Store Cart Page
                     </div>
                     <div class="col-12 col-md-3">
                         <button type="submit" class="btn btn-success mt-4 px-4 btn-block"
-                            style="background: #f5952f; border-color: #f5952f">
+                            style="background: #f5952f; border-color: #f5952f" {{ !$address ? 'disabled' : '' }}>
                             Checkout
                         </button>
                     </div>
