@@ -23,16 +23,6 @@ Store Account Page
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="profile_picture">Foto Profil</label>
-                                            <input type="file" class="form-control" id="profile_picture"
-                                                name="profile_picture" />
-                                            @error('profile_picture')
-                                            <div class="text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
                                             <label for="name">Nama Lengkap</label>
                                             <input type="text" class="form-control" id="name" name="name"
                                                 value="{{$user->name}}" />

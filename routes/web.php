@@ -57,15 +57,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/account', [AccountController::class, 'index'])->name('account');
     Route::post('/account/{redirect}', [AccountController::class, 'update'])->name('account-redirect');
 
-    Route::get('/account/address', [AccountAddressController::class, 'index'])->name('account-address');
-    Route::get('/account/address/create', [AccountAddressController::class, 'create'])->name('account-address-create');
-    Route::post('/account/address/store', [AccountAddressController::class, 'store'])->name('account-address-store');
-    Route::get('/account/address/{id}/edit', [AccountAddressController::class, 'edit'])->name('account-address-edit');
-    Route::put('/account/address/{id}', [AccountAddressController::class, 'update'])->name('account-address-update');
-    Route::delete('/account/address/{id}', [AccountAddressController::class, 'destroy'])->name('account-address-delete');
+    Route::get('/account-address', [AccountAddressController::class, 'index'])->name('account-address');
+    Route::get('/account-address/create', [AccountAddressController::class, 'create'])->name('account-address-create');
+    Route::post('/account-address/store', [AccountAddressController::class, 'store'])->name('account-address-store');
+    Route::get('/account-address/{id}/edit', [AccountAddressController::class, 'edit'])->name('account-address-edit');
+    Route::put('/account-address/{id}', [AccountAddressController::class, 'update'])->name('account-address-update');
+    Route::delete('/account-address/{id}', [AccountAddressController::class, 'destroy'])->name('account-address-delete');
 
-    Route::get('/account/transactions', [AccountTransactionController::class, 'index'])->name('account-transactions');
-    Route::get('/account/transactions/{id}}', [AccountTransactionController::class, 'detail'])->name('account-transaction-details');
+    Route::get('/account-transactions', [AccountTransactionController::class, 'index'])->name('account-transactions');
+    Route::get('/account-transactions-{id}}', [AccountTransactionController::class, 'detail'])->name('account-transaction-details');
 
     Route::get('/review', [ReviewController::class, 'index'])->name('review');
     Route::get('/review-details', [ReviewController::class, 'details'])->name('review-details');

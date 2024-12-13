@@ -32,8 +32,7 @@ class AccountController extends Controller
             }
 
             // Simpan foto profil baru
-            $data['profile_picture'] = $request->file('profile_picture')->store('assets/profile_picture', 'public');
-            $user->profile_picture = $data['profile_picture'];
+            $user['profile_picture'] = $request->file('profile_picture')->store('assets/profile', 'public');
             $user->save();
         }
 

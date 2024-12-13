@@ -29,7 +29,7 @@ Store Account Address Page
                                 <div class="col-11">
                                     <h2>{{ $address->name }}</h2>
                                     @if($address->is_selected)
-                                    <span class="badge badge-primary">Utama</span>
+                                    <span class="badge badge-primary" style="background-color: #f5952f">Utama</span>
                                     @endif
                                     <h5>{{ $address->phone_number }}</h5>
                                     <h5>{{ $address->address }}, {{ $address->provinces->name ?? 'Provinsi tidak
@@ -42,6 +42,18 @@ Store Account Address Page
                                     <a href="{{ route('account-address-edit', $address->id) }}" class="edit-button">
                                         Edit
                                     </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-left">
+                                    <form action="{{ route('account-address-delete', $address->id) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            Hapus Alamat
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

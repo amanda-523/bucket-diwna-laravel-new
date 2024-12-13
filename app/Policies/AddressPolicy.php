@@ -40,6 +40,7 @@ class AddressPolicy
     public function update(User $user, Address $address)
     {
         // Pastikan hanya pemilik alamat yang dapat mengubahnya
+        return $user->id === $address->user_id;
     }
 
     /**

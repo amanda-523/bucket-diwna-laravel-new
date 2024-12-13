@@ -76,7 +76,7 @@ class CheckoutController extends Controller
                 'gross_amount' => (int) $request->total_price,
             ],
             'customer_details' => [
-                'first_name' => Auth::user()->name,
+                'name' => Auth::user()->name,
                 'email' => Auth::user()->email,
             ],
             'enabled_payments' => [

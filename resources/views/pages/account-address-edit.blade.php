@@ -102,7 +102,7 @@ Store Account Address Edit Page
                                         <div class="form-group">
                                             <label>
                                                 <input type="checkbox" name="is_selected" value="1" {{
-                                                    old('is_selected') ? 'checked' : '' }}>
+                                                    old('is_selected', $address->is_selected) ? 'checked' : '' }}>
                                                 Jadikan sebagai alamat utama
                                             </label>
                                         </div>
@@ -110,14 +110,6 @@ Store Account Address Edit Page
                                 </div>
                                 <div class="row">
                                     <div class="col text-right">
-                                        <form action="{{ route('account-address-delete', $address->id) }}" method="POST"
-                                            style="display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger px-5">
-                                                Hapus
-                                            </button>
-                                        </form>
                                         <button type="submit" class="btn btn-success px-5">
                                             Simpan
                                         </button>

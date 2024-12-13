@@ -23,44 +23,6 @@ class AccountAddressController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string',
-            'provinces_id' => 'required|integer',
-            'regencies_id' => 'required|integer',
-            'zip_code' => 'required|integer',
-            'country' => 'required|string',
-            'phone_number' => 'required|string',
-            'is_selected' => 'nullable|boolean', // Validasi untuk is_selected
-        ]);
-
-        // Menangani input checkbox is_selected
-        $isSelected = $request->has('is_selected') ? 1 : 0;
-
-        // Membuat atau memperbarui alamat
-        Address::create([
-            'user_id' => auth()->id(),
-            'name' => $validated['name'],
-            'address' => $validated['address'],
-            'provinces_id' => $validated['provinces_id'],
-            'regencies_id' => $validated['regencies_id'],
-            'zip_code' => $validated['zip_code'],
-            'country' => $validated['country'],
-            'phone_number' => $validated['phone_number'],
-            'is_selected' => $isSelected, // Menyimpan nilai boolean
-        ]);
-
-        return redirect()->route('account-address')->with('success', 'Alamat berhasil disimpan!');
-    }
-
-    public function edit(Address $address)
-    {
-        $this->authorize('update', $address);
-        return view('pages.account-address-edit', compact('address'));
-    }
-
-    public function update(Request $request, Address $address)
-    {
         // Validasi input
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -70,40 +32,74 @@ class AccountAddressController extends Controller
             'zip_code' => 'required|integer',
             'country' => 'required|string',
             'phone_number' => 'required|string',
-            'is_selected' => 'nullable|boolean', // Validasi untuk is_selected
+            'is_selected' => 'nullable|boolean',
         ]);
 
-        // Menangani input checkbox is_selected
-        $isSelected = $request->has('is_selected') ? true : false;
+        // Tambahkan data user_id
+        $validated['user_id'] = auth()->id();
 
-        // Jika is_selected dicentang, set alamat lainnya menjadi tidak utama
-        if ($isSelected) {
+        // Jika is_selected diisi, set alamat lainnya menjadi tidak utama
+        if ($request->has('is_selected')) {
             Address::where('user_id', auth()->id())->update(['is_selected' => 0]);
+            $validated['is_selected'] = 1;
         }
 
-        // Memperbarui alamat yang ada
-        $address->update([
-            'name' => $validated['name'],
-            'address' => $validated['address'],
-            'provinces_id' => $validated['provinces_id'],
-            'regencies_id' => $validated['regencies_id'],
-            'zip_code' => $validated['zip_code'],
-            'country' => $validated['country'],
-            'phone_number' => $validated['phone_number'],
-            'is_selected' => $isSelected, // Menyimpan nilai boolean
+        // Simpan data ke database
+        Address::create($validated);
+
+        // Redirect ke halaman daftar alamat
+        return redirect()->route('account-address')->with('success', 'Alamat berhasil disimpan!');
+    }
+
+    public function edit(string $id)
+    {
+        $address = Address::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+
+        return view('pages.account-address-edit', [
+            'address' => $address,
+        ]);
+    }
+
+    public function update(Request $request, string $id)
+    {
+        // Validasi data dari request
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string',
+            'provinces_id' => 'required|integer',
+            'regencies_id' => 'required|integer',
+            'zip_code' => 'required|integer',
+            'country' => 'required|string',
+            'phone_number' => 'required|string',
+            'is_selected' => 'nullable|boolean',
         ]);
 
+        // Ambil alamat berdasarkan ID dan pastikan milik user yang sedang login
+        $address = Address::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+
+        // Jika is_selected diisi, set alamat lainnya menjadi tidak utama
+        if ($request->has('is_selected')) {
+            Address::where('user_id', auth()->id())->update(['is_selected' => 0]);
+            $data['is_selected'] = 1;
+        } else {
+            // Jika tidak ada perubahan pada 'is_selected', gunakan nilai sebelumnya
+            $data['is_selected'] = $address->is_selected;
+        }
+
+        // Update data alamat
+        $address->update($data);
+
+        // Redirect ke halaman daftar alamat dengan pesan sukses
         return redirect()->route('account-address')->with('success', 'Alamat berhasil diubah!');
     }
+
 
     public function destroy($id)
     {
         $address = Address::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
 
-        if ($address->delete()) {
-            return redirect()->route('account-address')->with('success', 'Alamat berhasil dihapus');
-        }
+        $address->delete();
 
-        return redirect()->route('account-address')->withErrors('Gagal menghapus alamat');
+        return redirect()->route('account-address');
     }
 }

@@ -22,19 +22,9 @@ Store Account Address New Page
             </a>
             <div class="row mt-4">
                 <div class="col-12">
-                    <form action="{{ route('account-address-store') }}" id="locations" method="POST">
+                    <form action="{{ route('account-address-store') }}" id="locations" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
-
-                        @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
-
                         <div class="card-account">
                             <div class="card-body">
                                 <div class="row">
@@ -42,21 +32,22 @@ Store Account Address New Page
                                         <div class="form-group">
                                             <label for="name">Nama
                                                 Lengkap</label>
-                                            <input type="text" class="form-control" id="name" name="name" />
+                                            <input type="text" class="form-control" id="name" name="name" required />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="address">Alamat
                                                 Lengkap</label>
-                                            <input type="text" class="form-control" id="address" name="address" />
+                                            <input type="text" class="form-control" id="address" name="address"
+                                                required />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="provinces_id">Provinsi</label>
                                             <select name="provinces_id" id="provinces_id" class="form-control"
-                                                v-if="provinces" v-model="provinces_id">
+                                                v-if="provinces" v-model="provinces_id" required>
                                                 <option v-for="province in provinces" :value="province.id">
                                                     @{{ province.name }}
                                                 </option>
@@ -68,7 +59,7 @@ Store Account Address New Page
                                         <div class="form-group">
                                             <label for="regencies_id">Kota</label>
                                             <select name="regencies_id" id="regencies_id" class="form-control"
-                                                v-if="regencies" v-model="regencies_id">
+                                                v-if="regencies" v-model="regencies_id" required>
                                                 <option v-for="regency in regencies" :value="regency.id">
                                                     @{{ regency.name }}
                                                 </option>
@@ -81,20 +72,22 @@ Store Account Address New Page
                                             <label for="zip_code">
                                                 Kode Pos
                                             </label>
-                                            <input type="text" class="form-control" id="zip_code" name="zip_code" />
+                                            <input type="text" class="form-control" id="zip_code" name="zip_code"
+                                                required />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="country">Negara</label>
-                                            <input type="text" class="form-control" id="country" name="country" />
+                                            <input type="text" class="form-control" id="country" name="country"
+                                                required />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="phone_number">No. HP</label>
                                             <input type="text" class="form-control" id="phone_number"
-                                                name="phone_number" />
+                                                name="phone_number" required />
                                         </div>
                                     </div>
                                     <div class="col-md-12">
