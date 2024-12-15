@@ -15,21 +15,12 @@ use Exception;
 
 use Midtrans\Snap;
 use Midtrans\Config;
+// use Midtrans\Transaction;
 
 class CheckoutController extends Controller
 {
     public function process(Request $request)
     {
-        // Validasi alamat
-        $user = Auth::user();
-        $selectedAddress = $user->addresses()->where('is_selected', true)->first();
-
-        if (!$selectedAddress) {
-            return redirect()->route('cart')->withErrors([
-                'address' => 'Silakan pilih alamat pengiriman sebelum melanjutkan checkout.',
-            ]);
-        }
-
         // Save users data
         $user = Auth::user();
         $user->update($request->except('total_price'));
@@ -39,6 +30,9 @@ class CheckoutController extends Controller
         $carts = Cart::with(['product', 'user'])->where('users_id', Auth::user()->id)->get();
 
         // Transaction create
+        //dd($request->all());
+        //print($request->shipping_price);
+        //print(Auth::user()->id);
         $transaction = Transaction::create([
             'users_id' => Auth::user()->id,
             'shipping_price' => $request->shipping_price,
@@ -47,6 +41,27 @@ class CheckoutController extends Controller
             'code' => $code,
         ]);
 
+        //print($carts);
+
+        //dd($transaction);
+        //exit;
+        /*Transaction::factory([
+            'users_id' => Auth::user()->id,
+            'shipping_price' => $request->shipping_price,
+            'total_price' => (int) $request->total_price,
+            'transaction_status' => 'PENDING',
+            'code' => $code,
+        ])->create();
+        exit();
+        $transaction = Transaction::create([
+            'users_id' => Auth::user()->id,
+            'shipping_price' => $request->shipping_price,
+            'total_price' => (int) $request->total_price,
+            'transaction_status' => 'PENDING',
+            'code' => $code,
+        ]);
+        echo "cex";
+        exit;*/
         foreach ($carts as $cart) {
             $trx = 'TRX-' . mt_rand(00000, 99999);
 
@@ -60,14 +75,18 @@ class CheckoutController extends Controller
             ]);
         }
 
+        //exit;
         // Delete cart data
         Cart::where('users_id', Auth::user()->id)->delete();
 
         // Config midtrans
+        Config::$serverKey = config('services.midtrans.merchantId');
         Config::$serverKey = config('services.midtrans.serverKey');
         Config::$isProduction = config('services.midtrans.isProduction');
         Config::$isSanitized = config('services.midtrans.isSanitized');
         Config::$is3ds = config('services.midtrans.is3ds');
+
+        // $callback_url = route('midtrans_callback');
 
         // Buat array untuk dikirim ke midtrans
         $midtrans = [
@@ -85,6 +104,7 @@ class CheckoutController extends Controller
                 'bank_transfer',
                 'indomaret',
             ],
+            'finish_redirect_url' => route('success'),
             'vtweb' => []
         ];
 
@@ -92,6 +112,8 @@ class CheckoutController extends Controller
             // Get Snap Payment Page URL
             $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
 
+            // print_r($paymentUrl);
+            // exit;
             // Redirect to Snap Payment Page
             return redirect($paymentUrl);
         } catch (Exception $e) {
@@ -101,6 +123,15 @@ class CheckoutController extends Controller
 
     public function callback(Request $request)
     {
-        // callback
+        //
+        $status = $request->input('transaction_status');
+
+        if ($status == "pending") {
+            echo "status == pending";
+        } else if ($status == "settlement") {
+            return redirect()->route('success');
+        } else {
+            echo "status == error";
+        }
     }
 }

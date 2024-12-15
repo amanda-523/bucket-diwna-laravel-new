@@ -19,6 +19,7 @@ class Transaction extends Model
         'shipping_price',
         'transaction_status',
         'total_price',
+        'code'
     ];
 
     /**
@@ -29,6 +30,7 @@ class Transaction extends Model
     protected $hidden = [
         //
     ];
+
 
     public function user()
     {
