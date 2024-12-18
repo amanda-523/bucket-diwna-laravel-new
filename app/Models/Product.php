@@ -16,7 +16,8 @@ class Product extends Model
         'categories_id',
         'price',
         'description',
-        'slug'
+        'slug',
+        'stock'
     ];
 
     protected $hidden = [

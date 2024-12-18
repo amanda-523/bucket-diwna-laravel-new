@@ -15,7 +15,7 @@ Admin User Page
             <hr />
         </div>
         <div class="dashboard-content">
-            <a href="{{route('user.index')}}" class="nav-back">
+            <a href="{{route('user.index')}}" style="color: #f5952f; text-decoration: none" class="nav-back">
                 <img src="/icons/chevron-left-sc50.svg" alt="" />
                 Kembali
             </a>

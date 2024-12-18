@@ -8,9 +8,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\HtmlString;
 
 use App\Http\Requests\Admin\TransactionRequest;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Yajra\DataTables\Facades\DataTables;
 
 class TransactionController extends Controller
@@ -24,16 +26,29 @@ class TransactionController extends Controller
             $query = Transaction::with(['user']);
 
             return Datatables::of($query)
-                ->addColumn('toggle_status', function ($item) {
-                    $isChecked = $item->transaction_status === 'SUCCESS' ? 'checked' : '';
-                    return '
-                        <label class="switch">
-                            <input type="checkbox" class="toggle-status" data-id="' . $item->id . '" ' . $isChecked . '>
-                            <span class="slider round"></span>
-                        </label>
-                    ';
+                ->addColumn('resi', function ($item) {
+                    // Ambil nomor resi dari TransactionDetail
+                    $transactionDetail = TransactionDetail::where('transaction_id', $item->id)->first();
+                    return $transactionDetail ? $transactionDetail->resi : 'Belum ada resi';
                 })
-                ->rawColumns(['toggle_status'])
+                ->addColumn('action', function ($item) {
+                    $toggle = '
+                    <input type="checkbox" class="toggle-status" data-id="' . $item->id . '" '
+                        . ($item->transaction_status === 'SUCCESS' ? 'checked' : '') . ' />';
+
+                    $resiForm = '';
+                    if ($item->transaction_status === 'SUCCESS') {
+                        $resiForm = '
+                        <form class="d-flex mt-2" onsubmit="event.preventDefault(); addResi(' . $item->id . ')">
+                            <input type="text" id="resi-' . $item->id . '" class="form-control" placeholder="Input Resi" />
+                            <button type="submit" class="btn btn-sm btn-primary ml-2">Simpan</button>
+                        </form>
+                    ';
+                    }
+
+                    return $toggle . $resiForm;
+                })
+                ->rawColumns(['action', 'resi'])
                 ->make();
         }
         return view('pages.admin.transaction.index');
@@ -109,5 +124,23 @@ class TransactionController extends Controller
         $transaction->save();
 
         return response()->json(['success' => true]);
+    }
+
+    public function addResi(Request $request, $id)
+    {
+        $request->validate([
+            'resi' => 'required|string|max:255',
+        ]);
+
+        // Debugging
+        $transactionDetail = TransactionDetail::where('transaction_id', $id)->first();
+        if (!$transactionDetail) {
+            return response()->json(['success' => false, 'message' => 'TransactionDetail tidak ditemukan!']);
+        }
+
+        $transactionDetail->resi = $request->resi;
+        $transactionDetail->save();
+
+        return response()->json(['success' => true, 'message' => 'Nomor resi berhasil ditambahkan']);
     }
 }

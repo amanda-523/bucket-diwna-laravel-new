@@ -56,6 +56,9 @@ Store Detail Page
                     <div class="col-lg-7">
                         <h1>{{$products->name}}</h1>
                         <div class="price">Rp {{number_format($products->price)}}</div>
+                        <div class="stock">
+                            Stok: {{ $products->stock > 0 ? $products->stock : 'Habis' }}
+                        </div>
                     </div>
                     <div class="col-lg-3" data-aos="zoom-in">
                         @auth

@@ -30,6 +30,7 @@ Admin Product Page
                                             <th>Nama</th>
                                             <th>Kategori</th>
                                             <th>Harga</th>
+                                            <th>Stok</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -59,6 +60,7 @@ Admin Product Page
                 { data: 'name', name: 'name' },
                 { data: 'category.name', name: 'category.name' },
                 { data: 'price', name: 'price' },
+                { data: 'stock', name: 'stock' },
                 {
                     data: 'action',
                     name: 'action',

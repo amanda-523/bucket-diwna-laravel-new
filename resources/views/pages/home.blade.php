@@ -68,7 +68,7 @@ Store Home Page
         </div>
     </section>
 
-    <section class="store-best-products">
+    {{-- <section class="store-best-products">
         <div class="container">
             <div class="row">
                 <div class="col-12" data-aos="fade-up">
@@ -108,7 +108,7 @@ Store Home Page
                 @endforelse
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="store-products">
         <div class="container">

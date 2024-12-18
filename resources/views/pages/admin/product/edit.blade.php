@@ -15,7 +15,7 @@ Admin Product Page
             <hr />
         </div>
         <div class="dashboard-content">
-            <a href="{{route('product.index')}}" class="nav-back">
+            <a href="{{route('product.index')}}" style="color: #f5952f; text-decoration: none" class="nav-back">
                 <img src="/icons/chevron-left-sc50.svg" alt="" />
                 Kembali
             </a>
@@ -65,9 +65,16 @@ Admin Product Page
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <label>Stok Produk</label>
+                                            <input type="number" name="stock" class="form-control"
+                                                value="{{$item->stock}}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
                                             <label>Deskripsi Produk</label>
-                                            <textarea name="description"
-                                                id="editor" rows="5" class="review-comment form-control">{!! $item->description !!}</textarea>
+                                            <textarea name="description" id="editor" rows="5"
+                                                class="review-comment form-control">{!! $item->description !!}</textarea>
                                         </div>
                                     </div>
                                 </div>

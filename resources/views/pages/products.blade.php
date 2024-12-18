@@ -6,7 +6,7 @@ Store Product Page
 
 @section('content')
 <div class="page-content page-home">
-    <section class="store-best-products">
+    {{-- <section class="store-best-products">
         <div class="container">
             <div class="row">
                 <div class="col-12" data-aos="fade-up">
@@ -46,7 +46,7 @@ Store Product Page
                 @endforelse
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="store-products">
         <div class="container">
