@@ -54,6 +54,26 @@ class CartController extends Controller
 
     public function success()
     {
+        // set value statusnya success
+        $data = [
+            'transaction_status' => 'SUCCESS',
+            'updated_at' => date("Y-m-d H:i:s"),
+        ];
+        // Cari data berdasarkan ID
+        $transaction = Transaction::findOrFail($request->transaction_id);
+        // Update nilai tersebut
+        $transaction->update($data);
+        //Create a resi after a successful payment.
+        // set value statusnya success
+        $datadetail = [
+            'resi' => 'RES-'.$request->transaction_id,
+            'updated_at' => date("Y-m-d H:i:s"),
+        ];
+        // Cari data berdasarkan ID
+        $transactiondetail = TransactionDetail::findOrFail($request->transaction_id);
+        // Update nilai tersebut
+        $transactiondetail->update($datadetail);
+        
         return view('pages.success');
     }
 }
