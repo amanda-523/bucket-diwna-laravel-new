@@ -10,23 +10,23 @@ class AccountTransactionController extends Controller
 {
     public function index()
     {
-        $transactions = TransactionDetail::with(['transaction.user', 'product.galleries'])
+        $transaction = TransactionDetail::with(['transaction.user', 'product.galleries'])
             ->whereHas('transaction', function ($transaction) {
                 $transaction->where('users_id', Auth::user()->id);
             })->get();
 
         return view('pages.account-transactions', [
-            'transactions' => $transactions,
+            'transaction' => $transaction,
         ]);
     }
 
     public function details(Request $request, $id)
     {
-        $transactions = TransactionDetail::with(['transaction.user', 'product.galleries'])
+        $transaction = TransactionDetail::with(['transaction.user', 'product.galleries'])
             ->findOrFail($id);
 
         return view('pages.account-transaction-details', [
-            'transactions' => $transactions,
+            'transaction' => $transaction,
         ]);
     }
 }

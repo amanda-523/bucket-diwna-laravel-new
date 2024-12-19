@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -52,8 +54,22 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    public function success()
+    public function success(Request $request)
     {
+        // Validasi input nomor resi jika diperlukan
+        $request->validate([
+            'transactions_id' => 'required|exists:transactions,id',
+        ]);
+
+        // Ambil transaksi berdasarkan ID
+        $transaction = Transaction::findOrFail($request->transactions_id);
+
+        // Update status menjadi success
+        $transaction->update([
+            'status' => 'SUCCESS',
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+
         return view('pages.success');
     }
 }

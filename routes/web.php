@@ -65,10 +65,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/account-address/{id}', [AccountAddressController::class, 'destroy'])->name('account-address-delete');
 
     Route::get('/account-transactions', [AccountTransactionController::class, 'index'])->name('account-transactions');
-    Route::get('/account-transactions-{id}}', [AccountTransactionController::class, 'detail'])->name('account-transaction-details');
+    Route::get('/account-transaction/{id}', [AccountTransactionController::class, 'details'])->name('account-transaction-details');
 
     Route::get('/review', [ReviewController::class, 'index'])->name('review');
-    Route::get('/review-details', [ReviewController::class, 'details'])->name('review-details');
+    Route::get('/review-detail/{id}', [ReviewController::class, 'details'])->name('review-details');
 });
 
 Route::prefix('admin')

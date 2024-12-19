@@ -1,7 +1,7 @@
 @extends('layouts.account')
 
 @section('title')
-Store Account TRansactions Page
+Store Account Transactions Page
 @endsection
 
 @section('content')
@@ -36,7 +36,8 @@ Store Account TRansactions Page
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">Nama Produk</div>
-                                            <div class="product-subtitle">{{ $transaction->transaction->product->name }}
+                                            <div class="product-subtitle">
+                                                {{ $transaction->transaction->product->name }}
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -57,13 +58,14 @@ Store Account TRansactions Page
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">Jumlah Total</div>
-                                            <div class="product-subtitle">Rp {{
-                                                number_format($transaction->transaction->total_price) }}</div>
+                                            <div class="product-subtitle">
+                                                Rp {{ number_format($transaction->transaction->total_price) }}
+                                            </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">No HP</div>
-                                            <div class="product-subtitle">{{
-                                                $transaction->transaction->user->phone_number }}
+                                            <div class="product-subtitle">
+                                                {{ $transaction->transaction->user->phone_number }}
                                             </div>
                                         </div>
                                     </div>
@@ -90,34 +92,48 @@ Store Account TRansactions Page
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">Provinsi</div>
                                             <div class="product-subtitle">
-                                                {{ App\Models\Province::find($transaction->transaction->address->provinces_id->name) }}
+                                                {{
+                                                App\Models\Province::find($transaction->transaction->address->provinces_id->name)
+                                                }}
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">Kota</div>
                                             <div class="product-subtitle">
-                                                {{ App\Models\Regency::find($transaction->transaction->address->regencies_id->name) }}
+                                                {{
+                                                App\Models\Regency::find($transaction->transaction->address->regencies_id->name)
+                                                }}
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">Kode Pos</div>
-                                            <div class="product-subtitle">{{ $transaction->transaction->address->zip_code }}</div>
+                                            <div class="product-subtitle">
+                                                {{ $transaction->transaction->address->zip_code }}
+                                            </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">Negara</div>
-                                            <div class="product-subtitle">{{ $transaction->transaction->address->country }}</div>
+                                            <div class="product-subtitle">
+                                                {{ $transaction->transaction->address->country }}
+                                            </div>
                                         </div>
                                         <div class="col-12 col-md-12">
                                             <div class="product-title">No HP</div>
-                                            <div class="product-subtitle">{{ $transaction->transaction->address->number_phone }}</div>
+                                            <div class="product-subtitle">
+                                                {{ $transaction->transaction->address->phone_number }}
+                                            </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">Status Pengiriman</div>
-                                            <div class="product-subtitle">{{ $transaction->transaction_detail->shipping_status }}</div>
+                                            <div class="product-subtitle">
+                                                {{ $transaction->transaction_detail->shipping_status }}
+                                            </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">Resi Pengiriman</div>
-                                            <div class="product-subtitle">{{ $transaction->transaction_detail->resi }}</div>
+                                            <div class="product-subtitle">
+                                                {{ $transaction->transaction_detail->resi }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

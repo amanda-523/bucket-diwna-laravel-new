@@ -11,11 +11,11 @@ Store Success Page
             <div class="row align-items-center row-login justify-content-center">
                 <div class="col-lg-6 text-center">
                     <img src="icons/checkbox-marked-circle-orange.svg" alt="" class="mb-4" width="50px" />
-                    <h2>Transaksi Diproses!</h2>
-                    <p>
-                        Silahkan tunggu konfirmasi email dari kami dan kami akan
-                        menginformasikan resi secepat mungkin!
+                    <h2 class="mb-4">Transaksi Berhasil!</h2>
+                    <p class="mb-1">
+                        Terima kasih sudah melakukan transaksi di Bucket Diwna!
                     </p>
+                    <p>Kami akan menginformasikan resi secepat mungkin!</p>
                     <div>
                         <a href="{{route('account-orders')}}" class="btn btn-success w-50 mt-4">
                             Lihat Pesanan
