@@ -28,7 +28,7 @@ class TransactionController extends Controller
             return Datatables::of($query)
                 ->addColumn('resi', function ($item) {
                     // Ambil nomor resi dari TransactionDetail
-                    $transactionDetail = TransactionDetail::where('transaction_id', $item->id)->first();
+                    $transactionDetail = TransactionDetail::where('transactions_id', $item->id)->first();
                     return $transactionDetail ? $transactionDetail->resi : 'Belum ada resi';
                 })
                 ->addColumn('action', function ($item) {
@@ -133,7 +133,7 @@ class TransactionController extends Controller
         ]);
 
         // Debugging
-        $transactionDetail = TransactionDetail::where('transaction_id', $id)->first();
+        $transactionDetail = TransactionDetail::where('transactions_id', $id)->first();
         if (!$transactionDetail) {
             return response()->json(['success' => false, 'message' => 'TransactionDetail tidak ditemukan!']);
         }
