@@ -89,36 +89,35 @@ Admin Transaction Page
             }
         });
     });
-
+</script>
+<script>
     function addResi(transactionId) {
-    const resi = $(`#resi-${transactionId}`).val();
-    
-    if (!resi) {
-    alert('Nomor resi tidak boleh kosong!');
-    return;
-    }
-    
-    $.ajax({
-    url: `/admin/transaction/add-resi/${transactionId}`,
-    method: 'POST',
-    data: {
-    _token: '{{ csrf_token() }}',
-    resi: resi,
-    },
-    success: function(response) {
-    console.log(response); // Debugging: Cek response dari server
-    if (response.success) {
-    alert('Nomor resi berhasil disimpan');
-    datatable.ajax.reload();
-    } else {
-    alert('Gagal menyimpan nomor resi');
-    }
-    },
-    error: function(xhr, status, error) {
-    console.log(xhr.responseText); // Debugging: Cek error dari AJAX request
-    alert('Terjadi kesalahan. Cek log untuk detail.');
-    }
-    });
+        const resi = document.getElementById(`resi-${transactionId}`).value;
+
+        if (!resi) {
+            alert('Silakan masukkan nomor resi.');
+            return;
+        }
+
+        Var csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        console.log(csrftoken);
+
+        // Kirim data dengan AJAX
+        $.ajax({
+            url: `/admin/transaction/${transactionId}/add-resi`,
+            method: 'POST',
+            data: {
+                resi: resi,
+                _token: $('meta[name="csrf-token"]').attr('content');
+            },
+            success: function (response) {
+                alert('Resi berhasil disimpan!');
+                location.reload(); // Refresh halaman jika perlu
+            },
+            error: function (xhr) {
+                alert('Terjadi kesalahan, silakan coba lagi.');
+            }
+        });
     }
 </script>
 @endpush

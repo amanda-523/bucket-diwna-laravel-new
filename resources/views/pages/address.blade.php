@@ -19,7 +19,7 @@ Store Address Page
                                 <a href="{{ route('cart') }}">Keranjang</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                Pilih Alamat Pengiriman
+                                Alamat Pengiriman
                             </li>
                         </ol>
                     </nav>
@@ -35,15 +35,15 @@ Store Address Page
                 <div class="row" data-aos="fade-up" data-aos-delay="100">
                     @if($addresses->isNotEmpty())
                     @foreach($addresses as $address)
-                    <div class="col-12 mb-3">
+                    <div class="col-md-12 mb-3">
                         <div class="card-account">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-1">
+                                    <div class="col-md-1">
                                         <input type="radio" class="w-100" name="selected_address"
                                             value="{{ $address->id }}" required>
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-md-10">
                                         <p>{{ $address->name }} <br />
                                             {{ $address->phone_number }} <br />
                                             {{ $address->address }}, {{ $address->provinces->name }}, {{
@@ -52,7 +52,7 @@ Store Address Page
                                             {{ $address->country }}
                                         </p>
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-md-1">
                                         <a href="{{ route('account-address-edit', $address->id) }}" class="edit-button"
                                             style="color: #f5952f">
                                             Edit

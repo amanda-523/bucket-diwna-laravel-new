@@ -113,7 +113,7 @@ Store Cart Page
                         <div class="product-subtitle">Subtotal</div>
                     </div>
                     @php $shippingPrice = $shippingPrice ?? 0; @endphp
-                    <input type="text" name="shipping_price" value="{{$shippingPrice}}">
+                    <input type="hidden" name="shipping_price" value="{{$shippingPrice}}">
                     <div class="col-4 col-md-3">
                         <div class="product-title">Rp {{ number_format($shippingPrice) }}</div>
                         <div class="product-subtitle">Free Ongkir</div>

@@ -33,17 +33,17 @@ class TransactionController extends Controller
                 })
                 ->addColumn('action', function ($item) {
                     $toggle = '
-                    <input type="checkbox" class="toggle-status" data-id="' . $item->id . '" '
+                <input type="checkbox" class="toggle-status" data-id="' . $item->id . '" '
                         . ($item->transaction_status === 'SUCCESS' ? 'checked' : '') . ' />';
 
                     $resiForm = '';
                     if ($item->transaction_status === 'SUCCESS') {
                         $resiForm = '
-                        <form class="d-flex mt-2" onsubmit="event.preventDefault(); addResi(' . $item->id . ')">
-                            <input type="text" id="resi-' . $item->id . '" class="form-control" placeholder="Input Resi" />
-                            <button type="submit" class="btn btn-sm btn-primary ml-2">Simpan</button>
-                        </form>
-                    ';
+                    <form class="d-flex mt-2" onsubmit="event.preventDefault();">
+                        <input type="text" id="resi-' . $item->id . '" class="form-control" placeholder="Input Resi" />
+                        <button type="button" class="btn btn-sm btn-primary ml-2" onclick="addResi(' . $item->id . ')">Simpan</button>
+                    </form>
+                ';
                     }
 
                     return $toggle . $resiForm;

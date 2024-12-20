@@ -83,6 +83,8 @@ Route::prefix('admin')
 
         Route::post('transaction/toggle-status/{id}', [App\Http\Controllers\Admin\TransactionController::class, 'toggleStatus'])
             ->name('transaction.toggleStatus');
+
+        Route::post('transaction/{id}/add-resi', [App\Http\Controllers\Admin\TransactionController::class, 'addResi']);
     });
 
 
