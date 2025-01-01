@@ -1,5 +1,9 @@
 @extends('layouts.auth')
 
+@section('title')
+Store Login Page
+@endsection
+
 @section('content')
 <div class="page-content page-auth">
     <section class="store-auth" data-aos="fade-right">
@@ -44,7 +48,7 @@
                     </form>
                 </div>
 
-                <div class="col-lg-5 text-center">
+                <div class="col-lg-5 text-center d-none d-lg-block">
                     <img src="/images/bucket bunga.svg" alt="" class="w-100 mb-4 mb-lg-none"
                         style="border-radius: 20px 0px 20px 0px;" />
                 </div>

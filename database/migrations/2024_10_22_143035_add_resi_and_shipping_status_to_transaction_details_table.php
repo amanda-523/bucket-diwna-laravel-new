@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('transaction_details', function (Blueprint $table) {
-            $table->string('shipping_status'); // PENDING/SHIPPING/SUCCESS
+            $table->string('shipping_status'); // PROCESS/SHIPPING/SUCCESS
             $table->string('resi');
         });
     }

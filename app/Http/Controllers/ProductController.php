@@ -9,33 +9,34 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['galleries'])->take(8)->get();
-        $bestSellers = Product::where('best_seller', true)->get();
+        // $products = Product::with(['galleries'])->take(8)->get(); // ambil 8 data produk
+        $products = Product::with(['galleries'])->get(); // ambil semua data produk
+        // $bestSellers = Product::where('best_seller', true)->get();
 
         return view(
             'pages.products',
             [
                 'products' => $products,
-                'bestSellers' => $bestSellers
+                // 'bestSellers' => $bestSellers
             ]
         );
     }
 
-    public function product()
+    /*public function product()
     {
         $products = Product::with(['galleries'])->get();
 
         return view('pages.all-product', [
             'products' => $products,
         ]);
-    }
+    }*/
 
-    public function best()
+    /*public function best()
     {
         $bestSellers = Product::where('best_seller', true)->get();
 
         return view('pages.best-seller', [
             'bestSellers' => $bestSellers,
         ]);
-    }
+    }*/
 }

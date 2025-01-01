@@ -1,7 +1,7 @@
 @extends('layouts.account')
 
 @section('title')
-Store Account Transactions Page
+Store Transactions Page
 @endsection
 
 @section('content')
@@ -19,17 +19,22 @@ Store Account Transactions Page
                     <a href="{{ route('account-transaction-details', $transaction->id) }}"
                         class="card-dashboard card-list d-block">
                         <div class="card-body">
-                            <div class="row align-items-center justify-content-center">
-                                <div class="col-1">
+                            <div class="row text-center align-items-center justify-content-center">
+                                <div class="col-md-1 d-none d-lg-block">
                                     <img src="{{ Storage::url($transaction->product->galleries->first()->photos ?? '') }}"
-                                        alt=""/>
+                                        alt="" />
                                 </div>
-                                <div class="col-6 text-left">
-                                    {{ $transaction->product->name }} </br>
+                                <div class="col-7 col-md-4 text-left">
+                                    {{ $transaction->product->name }}
+                                    </br>
                                     Rp {{ number_format($transaction->transaction->total_price) }}
                                 </div>
-                                <div class="col-4">{{ $transaction->created_at }}</div>
-                                <div class="col-1 d-none d-md-block">
+                                <div class="col-3 col-md-3 d-none d-lg-block">
+                                    #{{ $transaction->transaction->code }}
+                                </div>
+                                <div class="col-3 col-md-3">{{ $transaction->transaction->transaction_status
+                                    }}</div>
+                                <div class="col-2 col-md-1 text-right">
                                     <img src="/icons/chevron-right-ne20.svg" alt="" />
                                 </div>
                             </div>

@@ -23,12 +23,6 @@ class User extends Authenticatable
         'email',
         'password',
         'roles',
-        'profile_picture',
-        'address',
-        'provinces_id',
-        'regencies_id',
-        'zip_code',
-        'country',
         'phone_number',
     ];
 
@@ -52,8 +46,18 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function addresses(): HasMany
+    public function address()
     {
-        return $this->hasMany(Address::class, 'user_id');
+        return $this->hasOne(Address::class, 'users_id', 'id');
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class, 'users_id', 'id');
+    }
+
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class, 'users_id', 'id');
     }
 }

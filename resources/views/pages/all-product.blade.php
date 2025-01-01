@@ -15,9 +15,6 @@ Store All Product Page
                             <li class="breadcrumb-item">
                                 <a href="{{route('home')}}">Beranda</a>
                             </li>
-                            <li class="breadcrumb-item">
-                                <a href="{{route('products')}}">Produk</a>
-                            </li>
                             <li class="breadcrumb-item active">
                                 Semua Produk
                             </li>

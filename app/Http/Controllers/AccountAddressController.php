@@ -11,7 +11,7 @@ class AccountAddressController extends Controller
 {
     public function index()
     {
-        $addresses = Address::with(['provinces', 'regencies'])->where('user_id', Auth::id())->get();
+        $addresses = Address::with(['provinces', 'regencies'])->where('users_id', Auth::id())->get();
         return view('pages.account-address', compact('addresses'));
     }
 
@@ -36,11 +36,11 @@ class AccountAddressController extends Controller
         ]);
 
         // Tambahkan data user_id
-        $validated['user_id'] = auth()->id();
+        $validated['users_id'] = auth()->id();
 
         // Jika is_selected diisi, set alamat lainnya menjadi tidak utama
         if ($request->has('is_selected')) {
-            Address::where('user_id', auth()->id())->update(['is_selected' => 0]);
+            Address::where('users_id', auth()->id())->update(['is_selected' => 0]);
             $validated['is_selected'] = 1;
         }
 
@@ -53,7 +53,7 @@ class AccountAddressController extends Controller
 
     public function edit(string $id)
     {
-        $address = Address::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $address = Address::where('id', $id)->where('users_id', Auth::id())->firstOrFail();
 
         return view('pages.account-address-edit', [
             'address' => $address,
@@ -75,11 +75,14 @@ class AccountAddressController extends Controller
         ]);
 
         // Ambil alamat berdasarkan ID dan pastikan milik user yang sedang login
-        $address = Address::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $address = Address::where('id', $id)->where('users_id', Auth::id())->firstOrFail();
 
-        // Jika is_selected diisi, set alamat lainnya menjadi tidak utama
-        if ($request->has('is_selected')) {
-            Address::where('user_id', auth()->id())->update(['is_selected' => 0]);
+        // Jika 'is_selected' ada di request, set alamat lainnya menjadi tidak utama
+        if ($request->has('is_selected') && $request->input('is_selected') == 1) {
+            // Set alamat lainnya menjadi tidak utama
+            Address::where('users_id', auth()->id())->update(['is_selected' => 0]);
+
+            // Set 'is_selected' menjadi 1 (alamat utama)
             $data['is_selected'] = 1;
         } else {
             // Jika tidak ada perubahan pada 'is_selected', gunakan nilai sebelumnya
@@ -89,14 +92,13 @@ class AccountAddressController extends Controller
         // Update data alamat
         $address->update($data);
 
-        // Redirect ke halaman daftar alamat dengan pesan sukses
-        return redirect()->route('account-address')->with('success', 'Alamat berhasil diubah!');
+        return redirect()->route('account-address');
     }
 
 
     public function destroy($id)
     {
-        $address = Address::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $address = Address::where('id', $id)->where('users_id', Auth::id())->firstOrFail();
 
         $address->delete();
 

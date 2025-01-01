@@ -18,7 +18,7 @@ class DetailController extends Controller
         ]);
     }
 
-    public function add(Request $request, $id)
+    /*public function add(Request $request, $id)
     {
         $data = [
             'products_id' => $id,
@@ -26,6 +26,29 @@ class DetailController extends Controller
         ];
 
         Cart::create($data);
+
+        return redirect()->route('cart');
+    }*/
+
+    public function add(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        // Cek stok
+        if ($product->stock <= 0) {
+            return redirect()->back()->with('error', 'Stok produk habis.');
+        }
+
+        $data = [
+            'products_id' => $id,
+            'users_id' => Auth::user()->id,
+        ];
+
+        // Tambahkan ke keranjang
+        Cart::create($data);
+
+        // Kurangi stok produk
+        $product->decrement('stock', 1);
 
         return redirect()->route('cart');
     }

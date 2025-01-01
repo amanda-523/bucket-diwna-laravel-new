@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AccountAddressController;
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\AccountOrderController;
 use App\Http\Controllers\AccountTransactionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -14,6 +13,7 @@ use App\Http\Controllers\DetailController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,15 +34,17 @@ Route::get('/categories/{slug}', [CategoryController::class, 'detail'])->name('c
 
 
 Route::get('/products', [ProductController::class, 'index'])->name('products');
-Route::get('/all-product', [ProductController::class, 'product'])->name('all-product');
-Route::get('/best-seller', [ProductController::class, 'best'])->name('best-seller');
+// Route::get('/all-product', [ProductController::class, 'product'])->name('all-product');
+// Route::get('/best-seller', [ProductController::class, 'best'])->name('best-seller');
 
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('detail');
 Route::post('/details/{id}', [DetailController::class, 'add'])->name('detail-add');
 
 Route::post('/checkout/callback', [CheckoutController::class, 'callback'])->name('midtrans-callback');
 
-Route::get('/success', [CartController::class, 'success'])->name('success');
+Route::get('/pending', [StatusController::class, 'success'])->name('pending');
+Route::get('/success', [StatusController::class, 'success'])->name('success');
+Route::get('/failed', [StatusController::class, 'success'])->name('failed');
 
 Route::get('/register-success', [RegisteredUserController::class, 'success'])->name('register-success');
 
@@ -65,10 +67,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/account-address/{id}', [AccountAddressController::class, 'destroy'])->name('account-address-delete');
 
     Route::get('/account-transactions', [AccountTransactionController::class, 'index'])->name('account-transactions');
-    Route::get('/account-transaction/{id}', [AccountTransactionController::class, 'details'])->name('account-transaction-details');
+    Route::get('/account-transactions/{id}', [AccountTransactionController::class, 'details'])->name('account-transaction-details');
 
     Route::get('/review', [ReviewController::class, 'index'])->name('review');
-    Route::get('/review-detail/{id}', [ReviewController::class, 'details'])->name('review-details');
+    Route::get('/review-details/{id}', [ReviewController::class, 'details'])->name('review-details');
 });
 
 Route::prefix('admin')
@@ -88,7 +90,7 @@ Route::prefix('admin')
     });
 
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -96,6 +98,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+});*/
 
 require __DIR__ . '/auth.php';

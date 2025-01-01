@@ -16,7 +16,7 @@ Store Review Page
             <hr />
         </div>
         <div class="account-content">
-            <a href="{{route('account-orders-details')}}" class="nav-back">
+            <a href="{{route('account-transaction-details')}}" class="nav-back">
                 <img src="/icons/chevron-left-sc50.svg" alt="" />
                 Kembali
             </a>
@@ -80,7 +80,7 @@ Store Review Page
                                 <textarea name="editor" id="editor" rows="5" class="review-comment form-control"
                                     placeholder="Tulis komentar disini"></textarea>
                                 <div class="review-submit text-center">
-                                    <a href="{{route('account-orders-details')}}" class="btn btn-success btn-block">
+                                    <a href="{{route('account-transaction-details')}}" class="btn btn-success btn-block">
                                         Kirim
                                     </a>
                                 </div>

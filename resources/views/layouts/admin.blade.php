@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <meta name="csrf-token" content="{!! csrf_token() !!}">
+
 
     <title> @yield('title') </title>
 
@@ -13,7 +15,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="/style/main.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/v/bs4/dt-2.1.8/datatables.min.css" rel="stylesheet">
-    @stack('addon-script')
+
 </head>
 
 <body>
@@ -25,7 +27,8 @@
                     <img src="/images/logo-admin.svg" alt="" class="my-4" />
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="{{route('admin-dashboard')}}" class="list-group-item list-group-item-action">
+                    <a href="{{route('admin-dashboard')}}"
+                        class="list-group-item list-group-item-action {{(request()->is('admin')) ? 'active' : ''}}">
                         Dashboard
                     </a>
                     <a href="{{route('product.index')}}"
@@ -137,7 +140,9 @@
 
     <!-- Bootstrap core JavaScript -->
     @stack('prepend-script')
-    <script src="/vendor/jquery/jquery.min.js"></script>
+    {{-- <script src="/vendor/jquery/jquery.min.js"></script> --}}
+    {{-- <script src="../vendor/jquery/jquery-3.7.1.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/v/bs4/dt-2.1.8/datatables.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

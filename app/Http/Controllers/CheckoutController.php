@@ -41,27 +41,6 @@ class CheckoutController extends Controller
             'code' => $code,
         ]);
 
-        //print($carts);
-
-        //dd($transaction);
-        //exit;
-        /*Transaction::factory([
-            'users_id' => Auth::user()->id,
-            'shipping_price' => $request->shipping_price,
-            'total_price' => (int) $request->total_price,
-            'transaction_status' => 'PENDING',
-            'code' => $code,
-        ])->create();
-        exit();
-        $transaction = Transaction::create([
-            'users_id' => Auth::user()->id,
-            'shipping_price' => $request->shipping_price,
-            'total_price' => (int) $request->total_price,
-            'transaction_status' => 'PENDING',
-            'code' => $code,
-        ]);
-        echo "cex";
-        exit;*/
         foreach ($carts as $cart) {
             $trx = 'TRX-' . mt_rand(00000, 99999);
 
@@ -69,7 +48,7 @@ class CheckoutController extends Controller
                 'transactions_id' => $transaction->id,
                 'products_id' => $cart->product->id,
                 'price' => $cart->product->price,
-                'shipping_status' => 'PENDING',
+                'shipping_status' => 'PROCESS',
                 'resi' => '',
                 'code' => $trx,
             ]);
@@ -99,10 +78,30 @@ class CheckoutController extends Controller
                 'email' => Auth::user()->email,
             ],
             'enabled_payments' => [
+                // E-Wallets
                 'gopay',
+                'shopeepay',
+                'ovo',
+                'linkaja',
+                'danamon_online',
+
+                // Virtual Accounts
                 'bca_va',
+                'bni_va',
+                'bri_va',
+                'permata_va',
+                'cimb_va',
+                'mandiri_va',
+
+                // Bank Transfer
                 'bank_transfer',
+
+                // QRIS
+                'qris',
+
+                // Gerai Retail
                 'indomaret',
+                'alfamart',
             ],
             'finish_redirect_url' => route('success'),
             'vtweb' => []
@@ -124,14 +123,5 @@ class CheckoutController extends Controller
     public function callback(Request $request)
     {
         //
-        $status = $request->input('transaction_status');
-
-        if ($status == "pending") {
-            echo "status == pending";
-        } else if ($status == "settlement") {
-            return redirect()->route('success');
-        } else {
-            echo "status == error";
-        }
     }
 }

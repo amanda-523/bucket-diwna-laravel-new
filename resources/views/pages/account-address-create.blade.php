@@ -1,7 +1,7 @@
 @extends('layouts.account')
 
 @section('title')
-Store Account Address New Page
+Store Address Create Page
 @endsection
 
 @section('content')

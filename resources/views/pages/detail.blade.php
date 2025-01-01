@@ -6,6 +6,18 @@ Store Detail Page
 
 @section('content')
 <div class="page-content page-details">
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
     <section class="store-breadcrumbs" data-aos="fade-down" data-aos-delay="100">
         <div class="container">
             <div class="row">
@@ -56,7 +68,7 @@ Store Detail Page
                     <div class="col-lg-7">
                         <h1>{{$products->name}}</h1>
                         <div class="price">Rp {{number_format($products->price)}}</div>
-                        <div class="stock">
+                        <div class="stock mb-3">
                             Stok: {{ $products->stock > 0 ? $products->stock : 'Habis' }}
                         </div>
                     </div>
@@ -161,26 +173,35 @@ Store Detail Page
 <script src="/vendor/vue/vue.js"></script>
 <script>
     var gallery = new Vue({
-                    el: "#gallery",
-                    mounted() {
-                        AOS.init();
+        el: "#gallery",
+        mounted() {
+            AOS.init();
+        },
+        data: {
+            activePhoto: 0,
+            photos: [
+                @foreach($products->galleries as $gallery)
+                    {
+                    id: {{$gallery->id}},
+                    url: "{{ Storage::url($gallery->photos) }}",
                     },
-                    data: {
-                        activePhoto: 0,
-                        photos: [
-                            @foreach($products->galleries as $gallery)
-                                {
-                                id: {{$gallery->id}},
-                                url: "{{ Storage::url($gallery->photos) }}",
-                                },
-                            @endforeach
-                        ],
-                    },
-                    methods: {
-                        changeActive(id) {
-                            this.activePhoto = id;
-                        },
-                    },
-                });
+                @endforeach
+            ],
+        },
+        methods: {
+            changeActive(id) {
+                this.activePhoto = id;
+            },
+        },
+    });
+
+    // Validasi stok sebelum submit form
+    document.querySelector('form').addEventListener('submit', function (e) {
+        const stock = parseInt(document.querySelector('.stock').textContent.replace('Stok: ', ''));
+        if (stock <= 0) {
+            e.preventDefault();
+            alert('Stok produk habis!');
+        }
+    });
 </script>
 @endpush

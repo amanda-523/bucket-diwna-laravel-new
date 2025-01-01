@@ -11,7 +11,7 @@ class ReviewController extends Controller
         return view('pages.review');
     }
 
-    public function detail()
+    public function details()
     {
         return view('pages.review-details');
     }

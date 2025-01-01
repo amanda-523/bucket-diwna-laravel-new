@@ -14,6 +14,12 @@ class TransactionDetail extends Model
      *
      * @var array<int, string>
      */
+
+    const STATUS_PROCESS = 'PROCESS';
+    const STATUS_SHIPPING = 'SHIPPING';
+    const STATUS_SUCCESS = 'SUCCESS';
+    const STATUS_DONE = 'DONE';
+
     protected $fillable = [
         'transactions_id',
         'products_id',
@@ -31,6 +37,18 @@ class TransactionDetail extends Model
     protected $hidden = [
         //
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updating(function ($transactionDetail) {
+            if ($transactionDetail->isDirty('resi') && !empty($transactionDetail->resi)) {
+                $transactionDetail->shipping_status = self::STATUS_SHIPPING;
+            }
+        });
+    }
+
 
     public function product()
     {

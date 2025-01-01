@@ -1,5 +1,9 @@
 @extends('layouts.auth')
 
+@section('title')
+Store Register Page
+@endsection
+
 @section('content')
 <div class="page-content page-auth" id="register">
     <section class="store-auth" data-aos="fade-left">
@@ -14,7 +18,7 @@
                     <form method="POST" action="{{ route('register') }}" class="mt-2">
                         @csrf
                         <div class="form-group mb-1">
-                            <label>Nama Lengkap</label>
+                            <label>Nama Pengguna</label>
                             <input type="text" class="form-control w-75 @error('name') is-invalid @enderror"
                                 v-model="name" id="name" name="name" value="{{ old('name') }}" required autofocus
                                 autocomplete="name" />
@@ -68,7 +72,7 @@
                         </p>
                     </form>
                 </div>
-                <div class="col-lg-5 text-center">
+                <div class="col-lg-5 text-center d-none d-lg-block">
                     <img src="/images/bucket bunga.svg" alt="" class="w-100 mb-4 mb-lg-none"
                         style="border-radius: 20px 0px 20px 0px;" />
                 </div>

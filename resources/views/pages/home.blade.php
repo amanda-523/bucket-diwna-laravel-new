@@ -39,7 +39,7 @@ Store Home Page
                 <div class="col-12" data-aos="fade-up">
                     <h5>
                         <a href="{{route('categories')}}">
-                            Kategori
+                            Semua Kategori
                             <img src="/icons/chevron-right.svg" alt="" class="icon-right" />
                         </a>
                     </h5>
@@ -115,7 +115,7 @@ Store Home Page
             <div class="row">
                 <div class="col-12" data-aos="fade-up">
                     <h5>
-                        <a href="{{route('all-product')}}">
+                        <a href="{{route('products')}}">
                             Semua Produk
                             <img src="/icons/chevron-right.svg" alt="" class="icon-right" />
                         </a>

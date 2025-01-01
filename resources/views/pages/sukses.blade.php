@@ -7,25 +7,12 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>@yield('title')</title>
+    <title>test</title>
 
     <!-- Style -->
-    @include('includes.style')
-
+    
 </head>
-
 <body>
-    <!-- Page Content -->
-    @yield('content')
-
-    <!-- Footer -->
-    @include('includes.footer')
-
-    <!-- Script -->
-   @stack('prepend-script')
-    @include('includes.script')
-    @stack('addon-script')
-
+    hello world
 </body>
-
 </html>

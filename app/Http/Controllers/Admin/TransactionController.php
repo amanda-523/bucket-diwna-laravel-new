@@ -41,7 +41,7 @@ class TransactionController extends Controller
                         $resiForm = '
                     <form class="d-flex mt-2" onsubmit="event.preventDefault();">
                         <input type="text" id="resi-' . $item->id . '" class="form-control" placeholder="Input Resi" />
-                        <button type="button" class="btn btn-sm btn-primary ml-2" onclick="addResi(' . $item->id . ')">Simpan</button>
+                        <button type="button" class="btn btn-sm btn-primary ml-2" onclick="javascript:addResi(' . $item->id . ')" Javascript:addResi>Simpan</button>
                     </form>
                 ';
                     }

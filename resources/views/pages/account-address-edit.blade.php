@@ -1,7 +1,7 @@
 @extends('layouts.account')
 
 @section('title')
-Store Account Address Edit Page
+Store Address Edit Page
 @endsection
 
 @section('content')
@@ -102,7 +102,8 @@ Store Account Address Edit Page
                                         <div class="form-group">
                                             <label>
                                                 <input type="checkbox" name="is_selected" value="1" {{
-                                                    old('is_selected', $address->is_selected) ? 'checked' : '' }}>
+                                                    old('is_selected', $address->is_selected) ? 'checked' : ''
+                                                }}>
                                                 Jadikan sebagai alamat utama
                                             </label>
                                         </div>

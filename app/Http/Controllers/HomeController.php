@@ -11,14 +11,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        $products = Product::with(['galleries'])->take(8)->get();
-        $bestSellers = Product::where('best_seller', true)->get();
+        $categories = Category::take(2)->get();
+        $products = Product::with(['galleries'])->take(2)->get();
+        // $bestSellers = Product::where('best_seller', true)->get();
 
         return view('pages.home', [
             'categories' => $categories,
             'products' => $products,
-            'bestSellers' => $bestSellers
+            // 'bestSellers' => $bestSellers
         ]);
     }
 }

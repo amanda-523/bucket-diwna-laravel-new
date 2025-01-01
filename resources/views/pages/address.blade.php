@@ -15,9 +15,6 @@ Store Address Page
                             <li class="breadcrumb-item">
                                 <a href="{{ route('home') }}">Beranda</a>
                             </li>
-                            <li class="breadcrumb-item">
-                                <a href="{{ route('cart') }}">Keranjang</a>
-                            </li>
                             <li class="breadcrumb-item active">
                                 Alamat Pengiriman
                             </li>
@@ -39,12 +36,16 @@ Store Address Page
                         <div class="card-account">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-md-1">
                                         <input type="radio" class="w-100" name="selected_address"
                                             value="{{ $address->id }}" required>
                                     </div>
-                                    <div class="col-md-10">
+                                    <div class="col-8 col-md-10">
                                         <p>{{ $address->name }} <br />
+                                            @if($address->is_selected)
+                                            <span class="badge badge-primary"
+                                                style="background-color: #f5952f">Utama</span>
+                                            @endif
                                             {{ $address->phone_number }} <br />
                                             {{ $address->address }}, {{ $address->provinces->name }}, {{
                                             $address->regencies->name }}, {{
@@ -52,7 +53,7 @@ Store Address Page
                                             {{ $address->country }}
                                         </p>
                                     </div>
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-md-1">
                                         <a href="{{ route('account-address-edit', $address->id) }}" class="edit-button"
                                             style="color: #f5952f">
                                             Edit

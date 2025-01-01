@@ -33,4 +33,15 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'categories_id', 'id');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($product) {
+            if ($product->stock < 0) {
+                throw new \Exception('Stok tidak boleh negatif.');
+            }
+        });
+    }
 }

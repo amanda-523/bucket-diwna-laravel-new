@@ -23,7 +23,7 @@ Store Account Page
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="name">Nama Lengkap</label>
+                                            <label for="name">Nama Pengguna</label>
                                             <input type="text" class="form-control" id="name" name="name"
                                                 value="{{$user->name}}" />
                                         </div>

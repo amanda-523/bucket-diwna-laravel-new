@@ -10,7 +10,7 @@ class Address extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'users_id',
         'name',
         'address',
         'provinces_id',
@@ -23,7 +23,12 @@ class Address extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'users_id', 'id');
+    }
+
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class, 'addresses_id', 'id');
     }
 
     public function provinces()

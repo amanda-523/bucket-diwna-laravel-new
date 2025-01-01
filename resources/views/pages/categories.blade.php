@@ -39,7 +39,7 @@ Store Category Page
             <div class="row">
                 <div class="col-12" data-aos="fade-up">
                     <h5>
-                        {{ isset($selectedCategory) ? 'Produk Kategori ' . $selectedCategory->name : 'Semua Produk'
+                        {{ isset($selectedCategory) ? 'Produk Kategori ' . $selectedCategory->name : 'Produk Kategori'
                         }}
                     </h5>
                 </div>
@@ -67,7 +67,7 @@ Store Category Page
                 </div>
                 @empty
                 <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-                    Tidak Ditemukan Produk
+                    Pilih Kategori
                 </div>
                 @endforelse
             </div>

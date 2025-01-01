@@ -93,7 +93,7 @@ Store Cart Page
                     </p>
                 </div>
                 @else
-                <div class="col-12 text-danger">Tidak ada alamat yang tersedia.</div>
+                <div class="col-12 text-danger">Tidak ada alamat yang tersedia</div>
                 @endif
             </div>
             <form action="{{route('checkout')}}" id="locations" enctype="multipart/form-data" method="POST">

@@ -92,6 +92,11 @@ Admin Transaction Page
 </script>
 <script>
     function addResi(transactionId) {
+      //  alert("hello world ");
+       //return false;
+
+       alert(transactionId);
+
         const resi = document.getElementById(`resi-${transactionId}`).value;
 
         if (!resi) {
@@ -99,8 +104,8 @@ Admin Transaction Page
             return;
         }
 
-        Var csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        console.log(csrftoken);
+       // var csrftoken = $('meta[name="csrf-token"]').attr('content');
+       // console.log(csrftoken);
 
         // Kirim data dengan AJAX
         $.ajax({
@@ -108,7 +113,7 @@ Admin Transaction Page
             method: 'POST',
             data: {
                 resi: resi,
-                _token: $('meta[name="csrf-token"]').attr('content');
+                _token: $('meta[name="csrf-token"]').attr('content')
             },
             success: function (response) {
                 alert('Resi berhasil disimpan!');

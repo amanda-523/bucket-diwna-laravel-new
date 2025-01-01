@@ -17,7 +17,7 @@ class AccountController extends Controller
         ]);
     }
 
-    public function updateProfilePicture(Request $request)
+    /*public function updateProfilePicture(Request $request)
     {
         $request->validate([
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -37,7 +37,7 @@ class AccountController extends Controller
         }
 
         return redirect()->route('account')->with('success', 'Foto profil berhasil diperbarui');
-    }
+    }*/
 
     public function update(Request $request, $redirect)
     {
